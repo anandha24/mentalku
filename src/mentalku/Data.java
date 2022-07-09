@@ -22,125 +22,117 @@ public abstract class Data implements Operasi {
         for (int i = 0; i < levelStress.length; i++) {
             if (levelStress[i] > 1) {
                 this.totalSampelYa++;
-                // System.out.println(i);
             }
-            // if (levelStress[i] <= 1) {
-            // this.totalSampelTidak++;
-            // }
-            if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[0] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[1] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[2] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[3] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[4] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[5] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[6] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[7] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[8] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[9] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[10] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[11] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[12] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[13] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[14] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] > 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[15] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[0] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[1] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[2] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[3] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[4] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[5] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[6] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[7] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[8] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[9] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[10] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("No") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] < 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[11] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("No")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] <= 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[12] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] <= 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[13] += 1;
-            } else if (limbMovement[i].equals("male") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] > 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[14] += 1;
-            } else if (limbMovement[i].equals("female") && suhuBadan[i] > 35 && oksigenDarah[i].equals("Yes")
-                    && detakJantung[i].equals("Yes") && levelStress[i] <= 1) {
+            } else if (limbMovement[i] <= 10.000 && suhuBadan[i] > 97.000 && oksigenDarah[i] > 95.000
+                    && detakJantung[i] >= 60.000 && levelStress[i] <= 1) {
                 this.frekuensiPrediksiTidak[15] += 1;
             }
         }
     }
 
     protected int getTotalSampel() {
-        // System.out.println("Total sampel : " + this.totalSampel);
         return this.totalSampel;
     }
 
     protected int getTotalSampel(int totalSampel) {
-        // System.out.println("Total sampel Tidak: " + (totalSampel -
-        // this.totalSampelYa));
         this.totalSampelTidak = totalSampel - this.totalSampelYa;
         return this.totalSampelTidak;
     }
 
     protected int getTotalSampel(int totalSampelTidak, int totalSampel) {
-        // System.out.println("Total sampel Ya: " + (totalSampel - totalSampelTidak));
         this.totalSampelYa = totalSampel - totalSampelTidak;
         return this.totalSampelYa;
     }

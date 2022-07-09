@@ -1,180 +1,103 @@
 package mentalku;
-public abstract class Hitung extends Orang implements Operasi {
-    int jumlahSampel = totalData;
-    int jumlahSampelYa = totalDataYa;
-    int jumlahSampelTidak = totalDataTidak;
-    int jenisUmur;
-    int jenisKelamin;
-    // int jenisKerja;
-    int jenisRiwayat;
-    // int jenisPengaruh;
-    int jenisRemote;
-    int PYa = 0;
-    int PTidak = 0;
+public abstract class Hitung extends Orang {
+    int jumlahSampel = super.getTotalSampel();
+    int jumlahSampelTidak = super.getTotalSampel(super.getTotalSampel());
+    int jumlahSampelYa = super.getTotalSampel(this.jumlahSampelTidak, this.jumlahSampel);
+    int jenisLimb; 
+    int jenisSuhu;
+    int jenisOksigen; 
+    int jenisDetak;
+    int FYa = 0;
+    int FTidak = 0;
     double ProbYa = 0;
     double ProbTidak = 0;
     double ProbSampelYa = 0;
     double ProbSampelTidak = 0;
-    // double Ptotal = 0.0;
-    // double Pumur = 0.0;
-    // double Pgender = 0.0;
-    // double Pkerja = 0.0;
-    // double Priwayat = 0.0;
-    // double Ppengaruh = 0.0;
-    // double Premote = 0.0;
 
-    // public abstract double PTotal(int jumlahSampel, int jumlahDataSampel);
+    public abstract double ProbYa(int FYa, int FTidak);
 
-    // public abstract double PUmur(int jenisUmur, int jumlahDataUmur);
+    public abstract double ProbTidak(int FYa, int FTidak);
 
-    // public abstract double PGender(int jenisKelamin, int jumlahDataGender);
+    public abstract double ProbNBayesYa(double ProbYa, double ProbTidak);
 
-    // public abstract double PKerja(int jenisKerja, int jumlahDataKerja);
+    public abstract double ProbNBayesTidak(double ProbYa, double ProbTidak);
 
-    // public abstract double PRiwayat(int jenisRiwayat, int jumlahDataRiwayat);
-
-    // public abstract double PPengaruh(int jenisPengaruh, int jumlahDataPengaruh);
-
-    // public abstract double PRemote(int jenisRemote, int jumlahDataRemote);
-
-    // public abstract void setPrediksi();
-
-    public abstract double ProbYa(int PYa, int PTidak);
-
-    public abstract double ProbTidak(int Pya, int PTidak);
-
-    public abstract double ProbBayesYa(double ProbYa, double ProbTidak);
-
-    public abstract double ProbBayesTidak(double ProbYa, double ProbTidak);
-
-    public void setPYaTidak(int jenisKelamin,
-            int jenisUmur,
-            int jenisRiwayat, int jenisRemote) {
+    public void setFYaTidak(int jenisLimb, int jenisSuhu,
+            int jenisOksigen, int jenisDetak) {
+                this.jumlahSampel = super.getTotalSampel();
+        this.jumlahSampelTidak = super.getTotalSampel(super.getTotalSampel());
+        this.jumlahSampelYa = super.getTotalSampel(this.jumlahSampelTidak, this.jumlahSampel);
         this.ProbSampelYa = (double) this.jumlahSampelYa / this.jumlahSampel;
         this.ProbSampelTidak = (double) this.ProbSampelTidak / this.jumlahSampel;
-        if (jenisKelamin == 0 && jenisUmur == 0 && jenisRiwayat == 0 && jenisRemote == 0) {
-            this.PYa = 1;
-            this.PTidak = 1;
-        } else if (jenisKelamin == 1 && jenisUmur == 0 && jenisRiwayat == 0 && jenisRemote == 0) {
-            this.PYa = 4;
-            this.PTidak = 6;
-        } else if (jenisKelamin == 0 && jenisUmur == 1 && jenisRiwayat == 0 && jenisRemote == 0) {
-            this.PYa = 1;
-            this.PTidak = 2;
-        } else if (jenisKelamin == 0 && jenisUmur == 0 && jenisRiwayat == 1 && jenisRemote == 0) {
-            this.PYa = 3;
-            PTidak = 0;
-        } else if (jenisKelamin == 0 && jenisUmur == 0 && jenisRiwayat == 0 && jenisRemote == 1) {
-            this.PYa = 0;
-            this.PTidak = 4;
-        } else if (jenisKelamin == 1 && jenisUmur == 1 && jenisRiwayat == 0 && jenisRemote == 0) {
-            this.PYa = 1;
-            this.PTidak = 0;
-        } else if (jenisKelamin == 1 && jenisUmur == 0 && jenisRiwayat == 1 && jenisRemote == 0) {
-            this.PYa = 1;
-            this.PTidak = 3;
-        } else if (jenisKelamin == 1 && jenisUmur == 0 && jenisRiwayat == 0 && jenisRemote == 1) {
-            this.PYa = 1;
-            this.PTidak = 0;
-        } else if (jenisKelamin == 0 && jenisUmur == 1 && jenisRiwayat == 1 && jenisRemote == 0) {
-            this.PYa = 0;
-            this.PTidak = 2;
-        } else if (jenisKelamin == 0 && jenisUmur == 1 && jenisRiwayat == 0 && jenisRemote == 1) {
-            this.PYa = 1;
-            this.PTidak = 3;
-        } else if (jenisKelamin == 0 && jenisUmur == 0 && jenisRiwayat == 1 && jenisRemote == 1) {
-            this.PYa = 3;
-            PTidak = 1;
-        } else if (jenisKelamin == 1 && jenisUmur == 1 && jenisRiwayat == 1 && jenisRemote == 0) {
-            this.PYa = 2;
-            this.PTidak = 0;
-        } else if (jenisKelamin == 1 && jenisUmur == 1 && jenisRiwayat == 0 && jenisRemote == 1) {
-            this.PYa = 1;
-            PTidak = 0;
-        } else if (jenisKelamin == 1 && jenisUmur == 0 && jenisRiwayat == 1 && jenisRemote == 1) {
-            this.PYa = 2;
-            this.PTidak = 0;
-        } else if (jenisKelamin == 0 && jenisUmur == 1 && jenisRiwayat == 1 && jenisRemote == 1) {
-            this.PYa = 3;
-            this.PTidak = 1;
-        } else if (jenisKelamin == 1 && jenisUmur == 1 && jenisRiwayat == 1 && jenisRemote == 1) {
-            this.PYa = 0;
-            this.PTidak = 0;
+        if (jenisLimb == 0 && jenisSuhu == 0 && jenisOksigen == 0 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(0);
+            this.FTidak = super.getFrekuensiPrediksiTidak(0);
+        } else if (jenisLimb == 1 && jenisSuhu == 0 && jenisOksigen == 0 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(1);
+            this.FTidak = super.getFrekuensiPrediksiTidak(1);
+        } else if (jenisLimb == 0 && jenisSuhu == 1 && jenisOksigen == 0 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(2);
+            this.FTidak = super.getFrekuensiPrediksiTidak(2);
+        } else if (jenisLimb == 0 && jenisSuhu == 0 && jenisOksigen == 1 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(3);
+            this.FTidak = super.getFrekuensiPrediksiTidak(3);
+        } else if (jenisLimb == 0 && jenisSuhu == 0 && jenisOksigen == 0 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(4);
+            this.FTidak = super.getFrekuensiPrediksiTidak(4);
+        } else if (jenisLimb == 1 && jenisSuhu == 1 && jenisOksigen == 0 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(5);
+            this.FTidak = super.getFrekuensiPrediksiTidak(5);
+        } else if (jenisLimb == 1 && jenisSuhu == 0 && jenisOksigen == 1 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(6);
+            this.FTidak = super.getFrekuensiPrediksiTidak(6);
+        } else if (jenisLimb == 1 && jenisSuhu == 0 && jenisOksigen == 0 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(7);
+            this.FTidak = super.getFrekuensiPrediksiTidak(7);
+        } else if (jenisLimb == 0 && jenisSuhu == 1 && jenisOksigen == 1 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(8);
+            this.FTidak = super.getFrekuensiPrediksiTidak(8);
+        } else if (jenisLimb == 0 && jenisSuhu == 1 && jenisOksigen == 0 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(9);
+            this.FTidak = super.getFrekuensiPrediksiTidak(9);
+        } else if (jenisLimb == 0 && jenisSuhu == 0 && jenisOksigen == 1 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(10);
+            this.FTidak = super.getFrekuensiPrediksiTidak(10);
+        } else if (jenisLimb == 1 && jenisSuhu == 1 && jenisOksigen == 1 && jenisDetak == 0) {
+            this.FYa = super.getFrekuensiPrediksiYa(11);
+            this.FTidak = super.getFrekuensiPrediksiTidak(11);
+        } else if (jenisLimb == 1 && jenisSuhu == 1 && jenisOksigen == 0 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(12);
+            this.FTidak = super.getFrekuensiPrediksiTidak(12);
+        } else if (jenisLimb == 1 && jenisSuhu == 0 && jenisOksigen == 1 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(13);
+            this.FTidak = super.getFrekuensiPrediksiTidak(13);
+        } else if (jenisLimb == 0 && jenisSuhu == 1 && jenisOksigen == 1 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(14);
+            this.FTidak = super.getFrekuensiPrediksiTidak(14);
+        } else if (jenisLimb == 1 && jenisSuhu == 1 && jenisOksigen == 1 && jenisDetak == 1) {
+            this.FYa = super.getFrekuensiPrediksiYa(15);
+            this.FTidak = super.getFrekuensiPrediksiTidak(15);
         }
     };
 
-    public int getPYa() {
-        return this.PYa;
+    public int getFYa() {
+        return this.FYa;
     }
 
-    public int getPTidak() {
-        return this.PTidak;
+    public int getFTidak() {
+        return this.FTidak;
     }
 
-    // public void setHitungP(int jumlahSampel, int jenisUmur, int jenisKelamin, int
-    // jenisKerja, int jenisRiwayat,
-    // int jenisPengaruh, int jenisRemote, int jumlahDataSampel, int jumlahDataUmur,
-    // int jumlahDataGender,
-    // int jumlahDataKerja, int jumlahDataRiwayat, int jumlahDataPengaruh, int
-    // jumlahDataRemote) {
-    // this.Ptotal = PTotal(jumlahSampel, jumlahDataSampel);
-    // this.Pumur = PUmur(jenisUmur, jumlahDataUmur);
-    // this.Pgender = PGender(jenisKelamin, jumlahDataGender);
-    // this.Pkerja = PKerja(jenisKerja, jumlahDataKerja);
-    // this.Priwayat = PRiwayat(jenisRiwayat, jumlahDataRiwayat);
-    // this.Ppengaruh = PPengaruh(jenisPengaruh, jumlahDataPengaruh);
-    // this.Premote = PRemote(jenisRemote, jumlahDataRemote);
-    // }
-
-    // public void setHitungPY(int jumlahSampel, int jenisUmur, int jenisKelamin,
-    // int jenisKerja, int jenisRiwayat,
-    // int jenisPengaruh, int jenisRemote, int jumlahDataSampel, int jumlahDataUmur,
-    // int jumlahDataGender,
-    // int jumlahDataKerja, int jumlahDataRiwayat, int jumlahDataPengaruh, int
-    // jumlahDataRemote) {
-    // this.Ptotal = PTotal(jumlahSampel, jumlahDataSampel);
-    // this.Pumur = PUmur(jenisUmur, jumlahDataUmur);
-    // this.Pgender = PGender(jenisKelamin, jumlahDataGender);
-    // this.Pkerja = PKerja(jenisKerja, jumlahDataKerja);
-    // this.Priwayat = PRiwayat(jenisRiwayat, jumlahDataRiwayat);
-    // this.Ppengaruh = PPengaruh(jenisPengaruh, jumlahDataPengaruh);
-    // this.Premote = PRemote(jenisRemote, jumlahDataRemote);
-    // }
-
-    // public double getPtotal() {
-    // return Ptotal;
-    // }
-
-    // public double getPumur() {
-    // return Pumur;
-    // }
-
-    // public double getPgender() {
-    // return Pgender;
-    // }
-
-    // public double getPkerja() {
-    // return Pkerja;
-    // }
-
-    // public double getPriwayat() {
-    // return Priwayat;
-    // }
-
-    // public double getPpengaruh() {
-    // return Ppengaruh;
-    // }
-
-    // public double getPremote() {
-    // return Premote;
-    // }
-
-    public int PYa() {
-        return PYa;
+        public int getJumlahSampel() {
+        return this.jumlahSampel;
     }
 
-    public int PTidak() {
-        return PTidak;
+    public int getJumlahSampelYa() {
+        return this.jumlahSampelYa;
+    }
+
+    public int getJumlahSampelTidak() {
+        return this.jumlahSampelTidak;
     }
 
     public double getProbYa() {
@@ -184,9 +107,4 @@ public abstract class Hitung extends Orang implements Operasi {
     public double getProbTidak() {
         return ProbTidak;
     }
-
-    // public double getHitungP() {
-    // return getPtotal() * getPumur() * getPgender() * getPkerja() * getPriwayat()
-    // * getPpengaruh() * getPremote();
-    // }
 }

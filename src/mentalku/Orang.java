@@ -1,9 +1,7 @@
 package mentalku;
-public abstract class Orang {
+public abstract class Orang extends Data{
     protected String nama;
     protected int umur;
-    // protected int jenisUmurYa;
-    // protected int jenisUmurTidak;
     protected int jenisUmur;
 
     public abstract void setNama(String nama);

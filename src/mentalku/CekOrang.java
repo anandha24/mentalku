@@ -1,24 +1,14 @@
 package mentalku;
 
 public class CekOrang extends HitungTidak {
-    private char gender;
-    // private String kerja;
-    private String riwayat;
-    // private String pengaruh;
-    private String remote;
-    private int jenisGender;
-    private int jenisRiwayat;
-    private int jenisRemote;
-    // private int jenisGenderYa;
-    // private int jenisGenderTidak;
-    // private int jenisKerjaYa;
-    // private int jenisKerjaTidak;
-    // private int jenisRiwayatYa;
-    // private int jenisRiwayatTidak;
-    // private int jenisPengaruhYa;
-    // private int jenisPengaruhTidak;
-    // private int jenisRemoteYa;
-    // private int jenisRemoteTidak;
+    private double suhu;
+    private double limb;
+    private double oksigen;
+    private double detak;
+    private int jenisSuhu;
+    private int jenisLimb;
+    private int jenisOksigen;
+    private int jenisDetak;
 
     public void setNama(String nama) {
         this.nama = nama;
@@ -28,152 +18,86 @@ public class CekOrang extends HitungTidak {
         this.umur = umur;
     }
 
-    public void setGender(char gender) {
-        this.gender = gender;
+    public void setSuhu(Double Suhu) {
+        this.suhu = Suhu;
+    } 
+
+    public void setLimb(Double Limb) {
+        this.limb = Limb;
     }
 
-    // public void setKerja(String kerja) {
-    // this.kerja = kerja;
-    // }
-
-    public void setRiwayat(String riwayat) {
-        this.riwayat = riwayat;
+    public void setOksigen(Double Oksigen) {
+        this.oksigen = Oksigen;
     }
 
-    // public void setPengaruh(String pengaruh) {
-    // this.pengaruh = pengaruh;
-    // }
-
-    public void setRemote(String remote) {
-        this.remote = remote;
+    public void setDetak(Double Detak) {
+        this.detak = Detak;
     }
 
-    public String getGender() {
-        String Gender = Character.toString(this.gender);
-        Gender = Gender.toUpperCase();
-        return Gender;
+    public Double getSuhu() {
+        return this.suhu;
     }
 
-    // public String getKerja() {
-    // return this.kerja;
-    // }
-
-    public String getRiwayat() {
-        return this.riwayat;
+    public Double getLimb() {
+        return this.limb;
     }
 
-    // public String getPengaruh() {
-    // return this.pengaruh;
-    // }
-
-    public String getRemote() {
-        return this.remote;
+    public Double getOksigen() {
+        return this.oksigen;
     }
 
-    public void setJenisGender() {
-        if (gender == 'l') {
-            this.jenisGender = 0;
+    public Double getDetak() {
+        return this.detak;
+    }
+
+    public void setJenisSuhu() {
+        if (suhu > 97.000) {
+            this.jenisSuhu = 1;
         } else {
-            this.jenisGender = 1;
+            this.jenisSuhu = 0;
         }
     }
 
-    public int getJenisGender() {
-        return this.jenisGender;
+    public int getJenisSuhu() {
+        return this.jenisSuhu;
     }
 
-    // public int getJenisGenderYa() {
-    // return jenisGenderYa;
-    // }
-
-    // public int getJenisGenderTidak() {
-    // return jenisGenderTidak;
-    // }
-
-    // public void setJenisKerja() {
-    // if (kerja.toLowerCase().equals("iya")) {
-    // this.jenisKerjaYa = 70;
-    // this.jenisKerjaTidak = 68;
-    // } else {
-    // this.jenisKerjaYa = 542;
-    // this.jenisKerjaTidak = 545;
-    // }
-    // }
-
-    // public int getJenisKerjaYa() {
-    // return jenisKerjaYa;
-    // }
-
-    // public int getJenisKerjaTidak() {
-    // return jenisKerjaTidak;
-    // }
-
-    public void setJenisRiwayat() {
-        if (riwayat.toLowerCase().equals("iya")) {
-            this.jenisRiwayat = 1;
+    public void setJenisLimb() {
+        if (limb > 10.000) {
+            this.jenisLimb = 0;
         } else {
-            this.jenisRiwayat = 0;
+            this.jenisLimb = 1;
         }
     }
 
-    public int getJenisRiwayat() {
-        return this.jenisRiwayat;
+    public int getJenisLimb() {
+        return this.jenisLimb;
     }
 
-    // public int getJenisRiwayatYa() {
-    // return jenisRiwayatYa;
-    // }
-
-    // public int getJenisRiwayatTidak() {
-    // return jenisRiwayatTidak;
-    // }
-
-    // public void setJenisPengaruh() {
-    // if (pengaruh.toLowerCase().equals("sering")) {
-    // this.jenisPengaruhYa = 116;
-    // this.jenisPengaruhTidak = 20;
-    // } else if (pengaruh.toLowerCase().equals("kadang-kadang")) {
-    // this.jenisPengaruhYa = 343;
-    // this.jenisPengaruhTidak = 106;
-    // } else if (pengaruh.toLowerCase().equals("jarang")) {
-    // this.jenisPengaruhYa = 119;
-    // this.jenisPengaruhTidak = 50;
-    // } else if (pengaruh.toLowerCase().equals("tidak pernah")) {
-    // this.jenisPengaruhYa = 30;
-    // this.jenisPengaruhTidak = 181;
-    // } else {
-    // this.jenisPengaruhYa = 4;
-    // this.jenisPengaruhTidak = 256;
-    // }
-    // }
-
-    // public int getJenisPengaruhYa() {
-    // return jenisPengaruhYa;
-    // }
-
-    // public int getJenisPengaruhTidak() {
-    // return jenisPengaruhTidak;
-    // }
-
-    public void setJenisRemote() {
-        if (remote.toLowerCase().equals("iya")) {
-            this.jenisRemote = 1;
+    public void setJenisOksigen() {
+        if (oksigen > 95.000) {
+            this.jenisOksigen = 1;
         } else {
-            this.jenisRemote = 0;
+            this.jenisOksigen = 0;
         }
     }
 
-    public int getJenisRemote() {
-        return this.jenisRemote;
+    public int getJenisOksigen() {
+        return this.jenisOksigen;
     }
 
-    // public int getJenisRemoteYa() {
-    // return jenisRemoteYa;
-    // }
+    public void setJenisDetak() {
+        if (detak >= 60.000) {
+            this.jenisDetak = 1;
+        } else {
+            this.jenisDetak = 0;
+        }
+    }
 
-    // public int getJenisRemoteTidak() {
-    // return jenisRemoteTidak;
-    // }
+    public int getJenisDetak() {
+        return this.jenisDetak;
+    }
+
 
     public void setJenisUmur() {
         super.setJenisUmur();
@@ -183,18 +107,27 @@ public class CekOrang extends HitungTidak {
         return super.getJenisUmur();
     }
 
-    // public int getJenisUmurTidak() {
-    // return super.getJenisUmurTidak();
-    // }
-
     public String prediksi() {
-        String Ya = "Iya, Anda butuh Pengobatan Kesehatan Mental\nPersentase Akurasi (%) -> ";
-        String Tidak = "Tidak, Anda tidak perlu Pengobatan Kesehatan Mental\nPersentase Akurasi (%) -> ";
+        String Ya = "Iya, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
+        String Tidak = "Tidak, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
+        Double Akurasi = 0.0;
+        if (Double.isNaN(getProbBayesYa()) || Double.isNaN(getProbBayesYa())){
+            Akurasi = 100.0;
+        } else if (getProbBayesYa() > getProbBayesTidak()){
+            Akurasi = (getProbBayesYa() / (getProbBayesYa() + getProbBayesTidak())) * 100;
+        } else{
+            Akurasi = (getProbBayesTidak() / (getProbBayesYa() + getProbBayesTidak())) * 100;
+        }
 
-        if (getProbBayesYa() > getProbBayesTidak()) {
-            return Ya + (getProbBayesYa() / (getProbBayesYa() + getProbBayesTidak())) * 100;
+        if (getProbBayesYa() > getProbBayesTidak() || Double.isNaN(getProbBayesTidak())) {
+            return Ya + Akurasi;
+        } else if (getProbBayesYa() < getProbBayesTidak() || Double.isNaN(getProbBayesYa())) {
+            return Tidak + Akurasi;
+        } else if (getProbBayesYa() == getProbBayesTidak() && (getProbBayesYa() != 0 || getProbBayesTidak() != 0)) {
+            return "Prediksi Bias, kemungkinan prediksi \"Iya\" dan \"Tidak\" sama\nPersentase Keakuratan Prediksi (%) -> "
+                    + (getProbBayesYa() / (getProbBayesYa() + getProbBayesTidak())) * 100;
         } else {
-            return Tidak + (getProbBayesTidak() / (getProbBayesYa() + getProbBayesTidak())) * 100;
+            return "Tidak bisa di prediksi\nPersentase Keakuratan Prediksi (%) -> -";
         }
     }
 }
