@@ -19,7 +19,6 @@ public class Mentalku {
    public static void main(String[] args) {
                 Scanner masukan = new Scanner(System.in);
                 CekOrang anan = new CekOrang();
-                anan.setFrekuensiPrediksi();
                 System.out.print("Masukkan Nama Anda: ");
                 anan.setNama(masukan.nextLine());
                 System.out.print("Masukkan Umur Anda: ");
@@ -34,7 +33,8 @@ public class Mentalku {
                 anan.setDetak(masukan.nextDouble());
                 masukan.close();
                 System.out.println("\n");
-
+                
+                anan.setFrekuensiPrediksi();
                 System.out.println("Nama Anda: " + anan.getNama());
                 System.out.println("Umur Anda: " + anan.getUmur());
                 System.out.println("Suhu Badan Anda dalam Derajat Farenheit (*F): " + anan.getSuhu());
@@ -45,7 +45,6 @@ public class Mentalku {
 
                 anan.setJenisSuhu();
                 anan.setJenisLimb();
-                anan.setJenisUmur();
                 anan.setJenisOksigen();
                 anan.setJenisDetak();
                 anan.setFYaTidak(anan.getJenisLimb(), anan.getJenisSuhu(), anan.getJenisOksigen(),
@@ -59,8 +58,7 @@ public class Mentalku {
                 System.out.println("Probabilitas Tidak: " + anan.getProbBayesTidak());
 
                 System.out.println("\n");
-                System.out.println("Prediksi Kondisi Mental Anda Beserta Presentase: " + anan.prediksi());
-                System.out.println("\n");
+                System.out.println("Prediksi Kondisi Kecemasan Anda Beserta Persentase: " + anan.prediksi());
         }
     
 }

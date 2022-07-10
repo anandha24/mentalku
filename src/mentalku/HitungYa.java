@@ -1,11 +1,11 @@
 package mentalku;
-import java.util.Arrays;
+// import java.util.Arrays;
 public class HitungYa extends Hitung {
     private int jumlahDataSampel = super.getJumlahSampel();
     private int jumlahDataSampelYa = super.getJumlahSampelYa();
     private int jumlahDataSampelTidak = super.getJumlahSampelTidak();
-    private int[] DataPrediksiYa = super.getFrekuensiPrediksiYa();
-    private int[] DataPrediksiTidak = super.getFrekuensiPrediksiTidak();
+    // private int[] DataPrediksiYa = super.getFrekuensiPrediksiYa();
+    // private int[] DataPrediksiTidak = super.getFrekuensiPrediksiTidak();
 
     double ProbYa;
     double ProbTidak;
@@ -30,6 +30,7 @@ public class HitungYa extends Hitung {
         return this.umur;
     }
 
+    // Method untuk menghitung probabilitas sesuai frekuensi input dengan peluang cemas
     public double ProbYa(int FYa, int FTidak) {
         this.jumlahDataSampelYa = super.getJumlahSampelYa();
         this.ProbYa = (double) FYa / this.jumlahDataSampelYa;
@@ -39,12 +40,14 @@ public class HitungYa extends Hitung {
         return this.ProbYa;
     }
 
+    // Method untuk menghitung probabilitas sesuai frekuensi input dengan peluang tidak cemas
     public double ProbTidak(int FYa, int FTidak) {
         this.jumlahDataSampelTidak = super.getJumlahSampelTidak();
         this.ProbTidak = (double) FTidak / jumlahDataSampelTidak;
         return this.ProbTidak;
     }
 
+    // Method untuk menghitung probabilitas Naive Bayes sesuai input dengan output cemas
     public double ProbNBayesYa(double ProbYa, double ProbTidak) {
         this.jumlahDataSampel = super.getJumlahSampel();
         ProbSampelYa = (double) jumlahDataSampelYa / jumlahDataSampel;
@@ -56,6 +59,7 @@ public class HitungYa extends Hitung {
         return this.ProbNBayesYa;
     }
 
+    // Method untuk menghitung probabilitas Naive Bayes sesuai input dengan output tidak cemas
     public double ProbNBayesTidak(double ProbYa, double ProbTidak) {
         this.jumlahDataSampel = super.getJumlahSampel();
         ProbSampelYa = (double) jumlahDataSampelYa / jumlahDataSampel;
@@ -64,10 +68,12 @@ public class HitungYa extends Hitung {
         return this.ProbNBayesTidak;
     }
 
+    // Method getter probabilitas sesuai input dengan output cemas
     public double getProbYa() {
         return this.ProbYa;
     }
 
+    // Method getter probabilitas Naive Bayes sesuai input dengan output cemas
     public double getProbBayesYa() {
         return this.ProbNBayesYa;
     }
