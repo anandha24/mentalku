@@ -17,12 +17,27 @@ public abstract class Data implements Operasi {
     private int totalSampelYa = 0;
     private int totalSampelTidak = 0;
 
+    // Method untuk melatih dengan melakukan normalisasi dan perhitungan frekuensi data latih
     protected void setFrekuensiPrediksi() {
         this.totalSampel = levelStress.length;
         for (int i = 0; i < levelStress.length; i++) {
             if (levelStress[i] > 1) {
                 this.totalSampelYa++;
             }
+
+            String a;
+            if(i % 2 == 0){
+                a = "..";
+            } else if (i % 3 == 0){
+                a = "...";
+            } else{
+                a = ".";
+            }
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println(i+1 + " Data telah digenerasi" + a);
+            System.out.println();
+
             if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
                     && detakJantung[i] < 60.000 && levelStress[i] > 1) {
                 this.frekuensiPrediksiYa[0] += 1;
@@ -123,32 +138,39 @@ public abstract class Data implements Operasi {
         }
     }
 
+    // Method getter untuk total sampel
     protected int getTotalSampel() {
         return this.totalSampel;
     }
 
+    // Method getter untuk total sampel tidak cemas 
     protected int getTotalSampel(int totalSampel) {
         this.totalSampelTidak = totalSampel - this.totalSampelYa;
         return this.totalSampelTidak;
     }
 
+    // Method getter untuk total sampel cemas
     protected int getTotalSampel(int totalSampelTidak, int totalSampel) {
         this.totalSampelYa = totalSampel - totalSampelTidak;
         return this.totalSampelYa;
     }
 
+    // Method getter untuk frekuensi semua kelas dengan output cemas
     protected int[] getFrekuensiPrediksiYa() {
         return this.frekuensiPrediksiYa;
     }
 
+    // Method getter untuk frekuensi perkelas (sesuai input index) dengan output cemas
     protected int getFrekuensiPrediksiYa(int index) {
         return this.frekuensiPrediksiYa[index];
     }
 
+    // Method getter untuk frekuensi semua kelas dengan output tidak cemas
     protected int[] getFrekuensiPrediksiTidak() {
         return this.frekuensiPrediksiTidak;
     }
 
+    // Method getter untuk frekuensi perkelas (sesuai input index) dengan output tidak cemas
     protected int getFrekuensiPrediksiTidak(int index) {
         return this.frekuensiPrediksiTidak[index];
     }

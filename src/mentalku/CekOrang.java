@@ -98,34 +98,27 @@ public class CekOrang extends HitungTidak {
         return this.jenisDetak;
     }
 
-
-    public void setJenisUmur() {
-        super.setJenisUmur();
-    }
-
-    public int getJenisUmur() {
-        return super.getJenisUmur();
-    }
-
     public String prediksi() {
         String Ya = "Iya, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
         String Tidak = "Tidak, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
         Double Akurasi = 0.0;
-        if (Double.isNaN(getProbBayesYa()) || Double.isNaN(getProbBayesYa())){
-            Akurasi = 100.0;
+        if (Double.isNaN(getProbBayesYa()) && Double.isNaN(getProbBayesYa())){
+            Akurasi = 0.0;
         } else if (getProbBayesYa() > getProbBayesTidak()){
             Akurasi = (getProbBayesYa() / (getProbBayesYa() + getProbBayesTidak())) * 100;
-        } else{
+        } else if (getProbBayesYa() < getProbBayesTidak()){
             Akurasi = (getProbBayesTidak() / (getProbBayesYa() + getProbBayesTidak())) * 100;
+        } else {
+            Akurasi = 100.0;
         }
 
-        if (getProbBayesYa() > getProbBayesTidak() || Double.isNaN(getProbBayesTidak())) {
-            return Ya + Akurasi;
+        if (getProbBayesYa() == getProbBayesTidak() && (getProbBayesYa() != 0 || getProbBayesTidak() != 0) || Double.isNaN(getProbBayesYa()) && Double.isNaN(getProbBayesYa())) {
+            return "Prediksi Bias, kemungkinan prediksi \"Iya\" dan \"Tidak\" sama\nPersentase Keakuratan Prediksi (%) -> "
+                    + Akurasi;       
         } else if (getProbBayesYa() < getProbBayesTidak() || Double.isNaN(getProbBayesYa())) {
             return Tidak + Akurasi;
-        } else if (getProbBayesYa() == getProbBayesTidak() && (getProbBayesYa() != 0 || getProbBayesTidak() != 0)) {
-            return "Prediksi Bias, kemungkinan prediksi \"Iya\" dan \"Tidak\" sama\nPersentase Keakuratan Prediksi (%) -> "
-                    + (getProbBayesYa() / (getProbBayesYa() + getProbBayesTidak())) * 100;
+        } else  if (getProbBayesYa() > getProbBayesTidak() || Double.isNaN(getProbBayesTidak())) {
+            return Ya + Akurasi;
         } else {
             return "Tidak bisa di prediksi\nPersentase Keakuratan Prediksi (%) -> -";
         }

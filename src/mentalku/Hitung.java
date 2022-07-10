@@ -22,6 +22,7 @@ public abstract class Hitung extends Orang {
 
     public abstract double ProbNBayesTidak(double ProbYa, double ProbTidak);
 
+    // Method untuk me-set frekuensi yang digunakan sesuai input
     public void setFYaTidak(int jenisLimb, int jenisSuhu,
             int jenisOksigen, int jenisDetak) {
                 this.jumlahSampel = super.getTotalSampel();
@@ -80,30 +81,37 @@ public abstract class Hitung extends Orang {
         }
     };
 
+    // Method getter untuk frekuensi kelas sesuai input dengan output cemas
     public int getFYa() {
         return this.FYa;
     }
 
+    // Method getter untuk frekuensi kelas sesuai input dengan output tidak cemas
     public int getFTidak() {
         return this.FTidak;
     }
 
-        public int getJumlahSampel() {
+    // Method getter untuk frekuensi sampel
+    public int getJumlahSampel() {
         return this.jumlahSampel;
     }
 
+    // Method getter untuk frekuensi sampel dengan output cemas
     public int getJumlahSampelYa() {
         return this.jumlahSampelYa;
     }
 
+    // Method getter untuk frekuensi sampel dengan output tidak cemas
     public int getJumlahSampelTidak() {
         return this.jumlahSampelTidak;
     }
 
+    // Method getter untuk probabilitas sesuai input dengan peluang cemas
     public double getProbYa() {
         return ProbYa;
     }
 
+    // Method getter untuk probabilitas sesuai input peluang tidak cemas
     public double getProbTidak() {
         return ProbTidak;
     }

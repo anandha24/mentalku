@@ -19,20 +19,24 @@ public class HitungTidak extends HitungYa {
         this.umur = umur;
     }
 
+    // Method untuk menghitung probabilitas sesuai frekuensi input dengan peluang cemas
     public double ProbYa(int FYa, int FTidak) {
         return super.ProbYa(FYa, FTidak);
     }
 
+    // Method untuk menghitung probabilitas sesuai frekuensi input dengan peluang tidak cemas
     public double ProbTidak(int FYa, int FTidak) {
         this.jumlahDataSampelTidak = super.getJumlahSampelTidak();
         this.ProbTidak = (double) FTidak / jumlahDataSampelTidak;
         return this.ProbTidak;
     }
 
+    // Method untuk menghitung probabilitas Naive Bayes sesuai input dengan output cemas
     public double ProbNBayesYa(double ProbYa, double ProbTidak) {
         return super.ProbNBayesYa(ProbYa, ProbTidak);
     }
 
+    // Method untuk menghitung probabilitas Naive Bayes sesuai input dengan output tidak cemas
     public double ProbNBayesTidak(double ProbYa, double ProbTidak) {
         this.jumlahDataSampel = super.getJumlahSampel();
         ProbSampelYa = (double) jumlahDataSampelYa / jumlahDataSampel;
@@ -41,10 +45,12 @@ public class HitungTidak extends HitungYa {
         return this.ProbNBayesTidak;
     }
 
+    // Method getter probabilitas sesuai input dengan output tidak cemas
     public double getProbTidak() {
         return this.ProbTidak;
     }
 
+    // Method getter probabilitas Naive Bayes sesuai input dengan output tidak cemas
     public double getProbBayesTidak() {
         return this.ProbNBayesTidak;
     }
