@@ -42,6 +42,9 @@ public class HitungTidak extends HitungYa {
         ProbSampelYa = (double) jumlahDataSampelYa / jumlahDataSampel;
         ProbSampelTidak = (double) jumlahDataSampelTidak / jumlahDataSampel;
         this.ProbNBayesTidak = ProbSampelTidak * ProbTidak / ((ProbSampelYa * ProbYa) + (ProbSampelTidak * ProbTidak));
+        if (Double.isNaN(this.ProbNBayesTidak)) {
+            this.ProbNBayesTidak = 0.0;
+        }
         return this.ProbNBayesTidak;
     }
 
