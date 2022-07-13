@@ -58,7 +58,6 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisSuhu = 0;
         }
-        System.out.println(this.jenisSuhu);
     }
 
     public int getJenisSuhu() {
@@ -71,7 +70,6 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisLimb = 1;
         }
-        System.out.println(this.jenisLimb);
     }
 
     public int getJenisLimb() {
@@ -84,7 +82,6 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisOksigen = 0;
         }
-        System.out.println(this.jenisOksigen);
     }
 
     public int getJenisOksigen() {
@@ -97,26 +94,37 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisDetak = 0;
         }
-        System.out.println(this.jenisDetak);
     }
 
     public int getJenisDetak() {
         return this.jenisDetak;
     }
 
-    public void setProb(){
-        this.ProbNBayesYa = getProbBayesYa();
-        this.ProbNBayesTidak = getProbBayesTidak();
+    public void setProb(Double Ya, Double Tidak){
+        this.ProbNBayesYa = Ya;
+        this.ProbNBayesTidak = Tidak;
+    }
+
+    public double getProbNBayesYa(){
+        return this.ProbNBayesYa;
+    }
+
+    public double getProbNBayesTidak(){
+        return this.ProbNBayesTidak;
     }
 
     public String prediksi() {
-        String Ya = "Iya, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
-        String Tidak = "Tidak, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
-        // Double Akurasi = 0.0;
-        setProb();
+        String Ya = "Iya, Berdasarkan kondisi fisik anda, anda sedang mengalami Kecemasan\nPersentase Akurasi (%) -> ";
+        String Tidak = "Tidak, Berdasarkan kondisi fisik anda, anda sedang Tidak mengalami Kecemasan\nPersentase Akurasi (%) -> ";
+        setProb(getProbBayesYa(), getProbBayesTidak());
 
-        System.out.println("Probabiltas ya: " + this.ProbNBayesYa);
-        System.out.println("Probabilitas Tidak: " + this.ProbNBayesTidak);
+        if(Double.isNaN(this.ProbNBayesYa)){
+            this.ProbNBayesYa = 0.0;
+        }
+
+        if (Double.isNaN(this.ProbNBayesTidak)) {
+            this.ProbNBayesTidak = 0.0;
+        }
 
         if (this.ProbNbayesYa == this.ProbNbayesTidak && (this.ProbNBayesYa != 0 || this.ProbNBayesTidak != 0) || (Double.isNaN(getProbBayesYa()) && Double.isNaN(getProbBayesTidak()))) {
             return "Prediksi Bias, kemungkinan prediksi \"Iya\" dan \"Tidak\" sama\nPersentase Keakuratan Prediksi (%) -> "

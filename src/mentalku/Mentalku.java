@@ -54,11 +54,9 @@ public class Mentalku {
                 anan.ProbTidak(anan.getFYa(), anan.getFTidak());
                 anan.ProbNBayesYa(anan.getProbYa(), anan.getProbTidak());
                 anan.ProbNBayesTidak(anan.getProbYa(), anan.getProbTidak());
-                System.out.println("Probabilitas Iya: " + anan.getProbBayesYa());
-                System.out.println("Probabilitas Tidak: " + anan.getProbBayesTidak());
-
-                System.out.println("\n");
-                System.out.println("Prediksi Kondisi Kecemasan Anda Beserta Persentase: " + anan.prediksi());
+                System.out.println("Prediksi Kondisi Kecemasan Anda Beserta Persentase: " + "\"" + anan.prediksi() + "\"");
+                System.out.println("Probabilitas Cemas: " + anan.getProbNBayesYa());
+                System.out.println("Probabilitas Tidak Cemas: " + anan.getProbNBayesTidak());
         }
     
 }

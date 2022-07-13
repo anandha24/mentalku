@@ -1,11 +1,11 @@
 package mentalku;
-import java.util.Arrays;
+// import java.util.Arrays;
 public class HitungYa extends Hitung {
     private int jumlahDataSampel = super.getJumlahSampel();
     private int jumlahDataSampelYa = super.getJumlahSampelYa();
     private int jumlahDataSampelTidak = super.getJumlahSampelTidak();
-    private int[] DataPrediksiYa = super.getFrekuensiPrediksiYa();
-    private int[] DataPrediksiTidak = super.getFrekuensiPrediksiTidak();
+    // private int[] DataPrediksiYa = super.getFrekuensiPrediksiYa();
+    // private int[] DataPrediksiTidak = super.getFrekuensiPrediksiTidak();
 
     double ProbYa;
     double ProbTidak;
@@ -52,13 +52,10 @@ public class HitungYa extends Hitung {
         this.jumlahDataSampel = super.getJumlahSampel();
         ProbSampelYa = (double) jumlahDataSampelYa / jumlahDataSampel;
         ProbSampelTidak = (double) jumlahDataSampelTidak / jumlahDataSampel;
-        System.out.println("ProbSampelYa: " + this.ProbSampelYa);
-        System.out.println("Ya" + Arrays.toString(DataPrediksiYa));
-        System.out.println("Tidak" + Arrays.toString(DataPrediksiTidak));
+        // System.out.println("ProbSampelYa: " + this.ProbSampelYa);
+        // System.out.println("Ya" + Arrays.toString(DataPrediksiYa));
+        // System.out.println("Tidak" + Arrays.toString(DataPrediksiTidak));
         this.ProbNBayesYa = ProbSampelYa * ProbYa / ((ProbSampelYa * ProbYa) + (ProbSampelTidak * ProbTidak));
-        if(Double.isNaN(this.ProbNBayesYa)){
-            this.ProbNBayesYa = 0.0;
-        }
         return this.ProbNBayesYa;
     }
 
