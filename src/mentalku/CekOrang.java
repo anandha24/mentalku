@@ -9,6 +9,8 @@ public class CekOrang extends HitungTidak {
     private int jenisLimb;
     private int jenisOksigen;
     private int jenisDetak;
+    private Double ProbNbayesYa = getProbBayesYa();
+    private Double ProbNbayesTidak = getProbBayesTidak();
 
     public void setNama(String nama) {
         this.nama = nama;
@@ -56,6 +58,7 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisSuhu = 0;
         }
+        System.out.println(this.jenisSuhu);
     }
 
     public int getJenisSuhu() {
@@ -68,6 +71,7 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisLimb = 1;
         }
+        System.out.println(this.jenisLimb);
     }
 
     public int getJenisLimb() {
@@ -80,6 +84,7 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisOksigen = 0;
         }
+        System.out.println(this.jenisOksigen);
     }
 
     public int getJenisOksigen() {
@@ -92,33 +97,34 @@ public class CekOrang extends HitungTidak {
         } else {
             this.jenisDetak = 0;
         }
+        System.out.println(this.jenisDetak);
     }
 
     public int getJenisDetak() {
         return this.jenisDetak;
     }
 
+    public void setProb(){
+        this.ProbNBayesYa = getProbBayesYa();
+        this.ProbNBayesTidak = getProbBayesTidak();
+    }
+
     public String prediksi() {
         String Ya = "Iya, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
         String Tidak = "Tidak, Berdasarkan kondisi fisik anda, anda sedang mengalami kecemasan\nPersentase Akurasi (%) -> ";
-        Double Akurasi = 0.0;
-        if (Double.isNaN(getProbBayesYa()) && Double.isNaN(getProbBayesYa())){
-            Akurasi = 0.0;
-        } else if (getProbBayesYa() > getProbBayesTidak()){
-            Akurasi = (getProbBayesYa() / (getProbBayesYa() + getProbBayesTidak())) * 100;
-        } else if (getProbBayesYa() < getProbBayesTidak()){
-            Akurasi = (getProbBayesTidak() / (getProbBayesYa() + getProbBayesTidak())) * 100;
-        } else {
-            Akurasi = 100.0;
-        }
+        // Double Akurasi = 0.0;
+        setProb();
 
-        if (getProbBayesYa() == getProbBayesTidak() && (getProbBayesYa() != 0 || getProbBayesTidak() != 0) || Double.isNaN(getProbBayesYa()) && Double.isNaN(getProbBayesYa())) {
+        System.out.println("Probabiltas ya: " + this.ProbNBayesYa);
+        System.out.println("Probabilitas Tidak: " + this.ProbNBayesTidak);
+
+        if (this.ProbNbayesYa == this.ProbNbayesTidak && (this.ProbNBayesYa != 0 || this.ProbNBayesTidak != 0) || (Double.isNaN(getProbBayesYa()) && Double.isNaN(getProbBayesTidak()))) {
             return "Prediksi Bias, kemungkinan prediksi \"Iya\" dan \"Tidak\" sama\nPersentase Keakuratan Prediksi (%) -> "
-                    + Akurasi;       
-        } else if (getProbBayesYa() < getProbBayesTidak() || Double.isNaN(getProbBayesYa())) {
-            return Tidak + Akurasi;
-        } else  if (getProbBayesYa() > getProbBayesTidak() || Double.isNaN(getProbBayesTidak())) {
-            return Ya + Akurasi;
+                    + 0.0;       
+        } else if (this.ProbNBayesYa < this.ProbNBayesTidak) {
+            return Tidak + (this.ProbNBayesTidak / (this.ProbNBayesYa + this.ProbNBayesTidak)) * 100;
+        } else if (this.ProbNBayesYa > this.ProbNBayesTidak) {
+            return Ya + (this.ProbNBayesYa / (this.ProbNBayesYa + this.ProbNBayesTidak)) * 100;
         } else {
             return "Tidak bisa di prediksi\nPersentase Keakuratan Prediksi (%) -> -";
         }
