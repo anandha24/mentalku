@@ -17,6 +17,9 @@ public class Mentalku {
      * @param args the command line arguments
      */
    public static void main(String[] args) {
+                InputData id = new InputData();
+                id.setVisible(true);
+                
                 Scanner masukan = new Scanner(System.in);
                 CekOrang anan = new CekOrang();
                 System.out.print("Masukkan Nama Anda: ");
