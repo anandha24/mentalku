@@ -3,12 +3,123 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mentalku;
+import java.text.SimpleDateFormat;
+// import java.text.ParseException;
+import java.util.Date;
 
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author AF Syauqi
  */
 public class Output extends javax.swing.JFrame {
+    protected String nama;
+    protected String Jkel;
+    protected String Pend;
+    protected String username;
+    protected String tanggalLahir;
+    private double suhu;
+    private double limb;
+    private double oksigen;
+    private double detak;
+    private String anxiety;
+    private String psikolog;
+    private String kodePsikolog;
+
+    public void setNama(String nama) {
+        this.nama = nama;
+        jLabel11.setText(nama);
+    }
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void settanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+        jLabel13.setText(tanggalLahir);
+    }
+
+    public String gettanggalLahir() {
+        return this.tanggalLahir;
+    }
+
+    public void setJkel(String Jkel){
+        this.Jkel = Jkel;
+    }
+
+    public String getJkel(){
+        return this.Jkel;
+    }
+
+    public void setPendidikan(String Pend){
+        this.Pend = Pend;
+        jLabel10.setText(Pend);
+    }
+
+    public String getPendidikan(){
+        return this.Pend;
+    }
+
+    public void setUsername(String Username){
+        this.username = Username;
+    }
+
+    public String getUsername(){
+        return this.username;
+    }
+
+    public void setSuhu(Double Suhu) {
+        this.suhu = Suhu;
+    } 
+
+    public void setLimb(Double Limb) {
+        this.limb = Limb;
+    }
+
+    public void setOksigen(Double Oksigen) {
+        this.oksigen = Oksigen;
+    }
+
+    public void setDetak(Double Detak) {
+        this.detak = Detak;
+    }
+
+    public Double getSuhu() {
+        return this.suhu;
+    }
+
+    public Double getLimb() {
+        return this.limb;
+    }
+
+    public Double getOksigen() {
+        return this.oksigen;
+    }
+
+    public Double getDetak() {
+        return this.detak;
+    }
+
+    public void setAnxiety(String cemas) {
+        this.anxiety = cemas;
+    }
+
+    public void setPsikolog(String psikolog) {
+        this.psikolog = psikolog;
+        jLabel21.setText(psikolog);
+    }
+
+    public void setKodePsikolog(String Kpsikolog) {
+        this.kodePsikolog = Kpsikolog;
+        jLabel22.setText("SIK HIMPSI: " + Kpsikolog);
+    }
+
+    public void addRow(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(new Object[]{this.suhu, this.limb, this.oksigen, this.detak, this.anxiety});
+    }
 
     /**
      * Creates new form Output
@@ -91,9 +202,12 @@ public class Output extends javax.swing.JFrame {
 
         jLabel11.setText("[Nama Lengkap]");
 
-        jLabel12.setText(" xx/xx/xxxx");
-
         jLabel13.setText(" xx/xx/xxxx");
+        
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String str = formatter.format(date);
+        jLabel12.setText(str);
 
         jLabel14.setText("[Tujuan Pemeriksaan]");
 
@@ -106,7 +220,7 @@ public class Output extends javax.swing.JFrame {
 
         jLabel18.setText("Waktu cetak");
 
-        jLabel19.setText("Psikolog Indonesia");
+        jLabel19.setText("Psikolog Pemeriksa");
 
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("TTD");

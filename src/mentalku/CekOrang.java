@@ -16,8 +16,8 @@ public class CekOrang extends HitungTidak {
         this.nama = nama;
     }
 
-    public void setUmur(int umur) {
-        this.umur = umur;
+    public void settanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 
     public void setSuhu(Double Suhu) {
@@ -103,6 +103,13 @@ public class CekOrang extends HitungTidak {
     public void setProb(Double Ya, Double Tidak){
         this.ProbNBayesYa = Ya;
         this.ProbNBayesTidak = Tidak;
+        if(Double.isNaN(this.ProbNBayesYa)){
+            this.ProbNBayesYa = 0.0;
+        }
+
+        if (Double.isNaN(this.ProbNBayesTidak)) {
+            this.ProbNBayesTidak = 0.0;
+        }
     }
 
     public double getProbNBayesYa(){
