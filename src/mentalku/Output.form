@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -209,32 +209,32 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SMA"/>
+        <Property name="text" type="java.lang.String" value="[Pendidikan Terakhir]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ahmad Fajrruddin Syauqi"/>
+        <Property name="text" type="java.lang.String" value="[Nama Lengkap]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
-        <Property name="text" type="java.lang.String" value="11, Juli 2022"/>
+        <Property name="text" type="java.lang.String" value=" xx/xx/xxxx"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
-        <Property name="text" type="java.lang.String" value="10, Desember 2012"/>
+        <Property name="text" type="java.lang.String" value=" xx/xx/xxxx"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Masuk TNI"/>
+        <Property name="text" type="java.lang.String" value="[Tujuan Pemeriksaan]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pentol"/>
+        <Property name="text" type="java.lang.String" value="[Aspek yang diungkap]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">

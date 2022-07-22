@@ -52,7 +52,7 @@ public class Output extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,17 +87,17 @@ public class Output extends javax.swing.JFrame {
 
         jLabel9.setText("Aspek yang  diungkap");
 
-        jLabel10.setText("SMA");
+        jLabel10.setText("[Pendidikan Terakhir]");
 
-        jLabel11.setText("Ahmad Fajrruddin Syauqi");
+        jLabel11.setText("[Nama Lengkap]");
 
-        jLabel12.setText("11, Juli 2022");
+        jLabel12.setText(" xx/xx/xxxx");
 
-        jLabel13.setText("10, Desember 2012");
+        jLabel13.setText(" xx/xx/xxxx");
 
-        jLabel14.setText("Masuk TNI");
+        jLabel14.setText("[Tujuan Pemeriksaan]");
 
-        jLabel15.setText("Pentol");
+        jLabel15.setText("[Aspek yang diungkap]");
 
         jLabel16.setText("Kesimpulan & Saran");
 
