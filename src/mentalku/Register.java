@@ -1,16 +1,24 @@
 package mentalku;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+// import java.text.ParseException;
+import java.util.Date;
 
 /**
  *
  * @author AF Syauqi
  */
 public class Register extends javax.swing.JFrame {
-
+    // protected String nama;
+    // protected String Jkel;
+    // protected String Pend;
+    // protected String username;
+    // protected String tanggalLahir;
     /**
      * Creates new form Register
      */
@@ -287,6 +295,19 @@ public class Register extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Akun anda berhasil ter-register, silahkan lanjut untuk login akun.", "Registrasi Akun", JOptionPane.PLAIN_MESSAGE);
+        Login login = new Login();
+        login.setStatusRegis(true);
+        login.setNama(jTextField1.getText());
+        login.setJkel(jComboBox1.getSelectedItem().toString());
+        Date date = jDateChooser1.getDate();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String str = formatter.format(date);
+        login.settanggalLahir(str);
+        login.setPendidikan(jTextField3.getText());
+        login.setUsername(jTextField5.getText());
+        setVisible(false);
+        login.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

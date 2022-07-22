@@ -22,12 +22,36 @@ public class HitungYa extends Hitung {
         return this.nama;
     }
 
-    public void setUmur(int umur) {
-        this.umur = umur;
+    public void settanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 
-    public int getUmur() {
-        return this.umur;
+    public String gettanggalLahir() {
+        return this.tanggalLahir;
+    }
+
+    public void setJkel(String Jkel){
+        this.Jkel = Jkel;
+    }
+
+    public String getJkel(){
+        return this.Jkel;
+    }
+
+    public void setPendidikan(String Pend){
+        this.Pend = Pend;
+    }
+
+    public String getPendidikan(){
+        return this.Pend;
+    }
+
+    public void setUsername(String Username){
+        this.username = Username;
+    }
+
+    public String getUsername(){
+        return this.username;
     }
 
     // Method untuk menghitung probabilitas sesuai frekuensi input dengan peluang cemas

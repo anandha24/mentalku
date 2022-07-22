@@ -15,8 +15,8 @@ public class HitungTidak extends HitungYa {
         this.nama = nama;
     }
 
-    public void setUmur(int umur) {
-        this.umur = umur;
+    public void settanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 
     // Method untuk menghitung probabilitas sesuai frekuensi input dengan peluang cemas

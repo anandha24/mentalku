@@ -9,6 +9,53 @@ package mentalku;
  * @author AF Syauqi
  */
 public class Login extends javax.swing.JFrame {
+    protected String nama;
+    protected String Jkel;
+    protected String Pend;
+    protected String username;
+    protected String tanggalLahir;
+    protected Boolean statusRegis = false;
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void settanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+
+    public String gettanggalLahir() {
+        return this.tanggalLahir;
+    }
+
+    public void setJkel(String Jkel){
+        this.Jkel = Jkel;
+    }
+
+    public String getJkel(){
+        return this.Jkel;
+    }
+
+    public void setPendidikan(String Pend){
+        this.Pend = Pend;
+    }
+
+    public String getPendidikan(){
+        return this.Pend;
+    }
+
+    public void setUsername(String Username){
+        this.username = Username;
+    }
+
+    public String getUsername(){
+        return this.username;
+    }
+
 
     /**
      * Creates new form Login
@@ -16,6 +63,10 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public void setStatusRegis(Boolean bool){
+        this.statusRegis = bool;
     }
 
     /**
@@ -207,10 +258,21 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        InputData id = new InputData();
+        if(statusRegis){
+            id.setNama(this.nama);
+            id.setJkel(this.Jkel);
+            id.setPendidikan(this.Pend);
+            id.settanggalLahir(this.tanggalLahir);
+            id.setUsername(this.username);
+        }
+        setVisible(false);
+        id.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Register regist = new Register();
+        setVisible(false);
         regist.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

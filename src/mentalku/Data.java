@@ -25,19 +25,19 @@ public abstract class Data implements Operasi {
                 this.totalSampelYa++;
             }
 
-            String a;
-            if(i % 2 == 0){
-                a = "..";
-            } else if (i % 3 == 0){
-                a = "...";
-            } else{
-                a = ".";
-            }
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            System.out.println();
-            System.out.println(i+1 + " Data telah digenerasi" + a);
-            System.out.println();
+            // String a;
+            // if(i % 2 == 0){
+            //     a = "..";
+            // } else if (i % 3 == 0){
+            //     a = "...";
+            // } else{
+            //     a = ".";
+            // }
+            // System.out.print("\033[H\033[2J");
+            // System.out.flush();
+            // System.out.println();
+            // System.out.println(i+1 + " Data telah digenerasi" + a);
+            // System.out.println();
 
             if (limbMovement[i] > 10.000 && suhuBadan[i] <= 97.000 && oksigenDarah[i] <= 95.000
                     && detakJantung[i] < 60.000 && levelStress[i] > 1) {
