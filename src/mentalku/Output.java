@@ -26,6 +26,7 @@ public class Output extends javax.swing.JFrame {
     private String anxiety;
     private String psikolog;
     private String kodePsikolog;
+    private String aspek;
 
     public void setNama(String nama) {
         this.nama = nama;
@@ -104,6 +105,11 @@ public class Output extends javax.swing.JFrame {
 
     public void setAnxiety(String cemas) {
         this.anxiety = cemas;
+    }
+
+    public void setAspek(String aspek){
+        this.aspek = aspek;
+        jLabel15.setText(aspek);
     }
 
     public void setPsikolog(String psikolog) {
@@ -209,7 +215,7 @@ public class Output extends javax.swing.JFrame {
         String str = formatter.format(date);
         jLabel12.setText(str);
 
-        jLabel14.setText("[Tujuan Pemeriksaan]");
+        jLabel14.setText("Penelusuran Tingkat Kecemasan Diri");
 
         jLabel15.setText("[Aspek yang diungkap]");
 
@@ -218,7 +224,10 @@ public class Output extends javax.swing.JFrame {
         jLabel17.setText("<Diisi sesuai analisis psikolog, menyusul>.......");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel18.setText("Waktu cetak");
+        Date tanggal = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+        String tanggalCetak = format.format(tanggal);
+        jLabel18.setText("Malang, " + tanggalCetak);
 
         jLabel19.setText("Psikolog Pemeriksa");
 
