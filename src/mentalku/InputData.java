@@ -410,7 +410,11 @@ public class InputData extends javax.swing.JFrame {
         pasien.setProb(pasien.getProbBayesYa(), pasien.getProbBayesTidak());
         if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
             outp.setAnxiety("Iya");
-        }else{outp.setAnxiety("Tidak");}
+            outp.setAspek(this.nama + "Sedang Mengalami Kecemasan");
+        }else{
+            outp.setAnxiety("Tidak");
+            outp.setAspek(this.nama + "Tidak Sedang Mengalami Kecemasan");
+        }
         if(jComboBox1.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){
             outp.setPsikolog(Psi1);
             outp.setKodePsikolog(kPsi1);
