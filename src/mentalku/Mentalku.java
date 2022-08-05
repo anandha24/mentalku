@@ -7,19 +7,19 @@ package mentalku;
 
 import java.util.Scanner;
 
-import com.mysql.cj.log.LogFactory;
 
 /**
  *
  * @author RISA, ANAN, SYAUQI
  */
 public class Mentalku {
-
+    
     /**
      * @param args the command line arguments
      */
    public static void main(String[] args) {
-       
+//            Koneksi con = new Koneksi();
+//        con.getConnection();
                 Login login = new Login();
                 login.setVisible(true);
         }
