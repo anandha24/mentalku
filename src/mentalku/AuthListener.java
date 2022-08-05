@@ -8,6 +8,6 @@ package mentalku;
  *
  * @author AF Syauqi
  */
-public abstract class AuthListener implements Auth{
-    
-}
+//public class AuthListener implements Auth{
+//    
+//}
