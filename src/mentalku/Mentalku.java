@@ -25,8 +25,10 @@ public class Mentalku {
      * @param args the command line arguments
      */
    public static void main(String[] args) {
-                Login login = new Login();
-                login.setVisible(true);
+//                Login login = new Login();
+                Admin admin = new Admin();
+                admin.setVisible(true);
+//                login.setVisible(true);
         }
     
 }
