@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +40,7 @@ public class Output extends javax.swing.JFrame {
     protected String Pend;
     protected String username;
     protected String tanggalLahir;
+    protected String id_pasien;
     private double suhu;
     private double limb;
     private double oksigen;
@@ -54,7 +56,7 @@ public class Output extends javax.swing.JFrame {
     }
     
     public int getId(){
-        return 1;
+        return  Integer.parseInt(this.id_pasien);
     }
 
     public String getNama() {
@@ -146,9 +148,32 @@ public class Output extends javax.swing.JFrame {
         jLabel22.setText("SIK HIMPSI: " + Kpsikolog);
     }
 
+    public void setIdPasien(String id){
+        this.id_pasien = id;
+    }
+
+    public String getIdPasien(){
+        return this.id_pasien;
+    }
+
     public void addRow(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{this.suhu, this.limb, this.oksigen, this.detak, this.anxiety});
+    }
+
+    public void setOutput(){
+        try{
+            Connection conn = Koneksi.getConnection();
+            String sql = "SELECT suhu_badan, limb_movement, oksigen_darah, detak_jantung, anxiety FROM mentalku.pemeriksaan";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.addRow(new Object[]{rs.getString("suhu_badan"), rs.getString("limb_movement"), rs.getString("oksigen_darah"), rs.getString("detak_jantung"), rs.getString("anxiety")});
+            }
+        }catch(SQLException e){
+            System.out.print(e);
+        }
     }
 
     /**
@@ -197,7 +222,7 @@ public class Output extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                // {null, null, null, null, null}
             },
             new String [] {
                 "Body Temperature", "Limb Movement Rate", "Blood Oxygen Rate", "Heart Rate", "Anxienty"
@@ -227,11 +252,14 @@ public class Output extends javax.swing.JFrame {
 
         jLabel11.setText("[Nama Lengkap]");
 
-        jLabel12.setText(" xx/xx/xxxx");
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String str = formatter.format(date);
+        jLabel12.setText(str);
 
         jLabel13.setText(" xx/xx/xxxx");
 
-        jLabel14.setText("[Tujuan Pemeriksaan]");
+        jLabel14.setText("Pemeriksaan Pra-Klinis Kecemasan Diri");
 
         jLabel15.setText("[Aspek yang diungkap]");
 
@@ -240,7 +268,7 @@ public class Output extends javax.swing.JFrame {
         jLabel17.setText("<Diisi sesuai analisis psikolog, menyusul>.......");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel18.setText("Waktu cetak");
+        jLabel18.setText("Malang, " + str);
 
         jLabel19.setText("Psikolog Indonesia");
 

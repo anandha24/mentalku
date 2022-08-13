@@ -6,6 +6,9 @@ package mentalku;
 
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.SQLException;
 // import java.text.ParseException;
 import java.util.Date;
 
@@ -46,7 +49,7 @@ public class Register extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -81,7 +84,7 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +100,7 @@ public class Register extends javax.swing.JFrame {
 
         jLabel3.setText("Jenis Kelamin");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L", "P" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -124,6 +127,10 @@ public class Register extends javax.swing.JFrame {
 
         jLabel4.setText("Pendidikan Terakhir");
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SD", "SMP", "SMA", "Sarjana", "Magister", "Doktoral", "Kedinasan", "Profesi" }));
+        jComboBox2.setMinimumSize(new java.awt.Dimension(94, 22));
+        jComboBox2.setPreferredSize(new java.awt.Dimension(94, 22));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -131,9 +138,9 @@ public class Register extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +148,7 @@ public class Register extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -272,7 +279,7 @@ public class Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -294,19 +301,38 @@ public class Register extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Akun anda berhasil ter-register, silahkan lanjut untuk login akun.", "Registrasi Akun", JOptionPane.PLAIN_MESSAGE);
-        Login login = new Login();
-        login.setStatusRegis(true);
-        login.setNama(jTextField1.getText());
-        login.setJkel(jComboBox1.getSelectedItem().toString());
-        Date date = jDateChooser1.getDate();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String str = formatter.format(date);
-        login.settanggalLahir(str);
-        login.setPendidikan(jTextField3.getText());
-        login.setUsername(jTextField5.getText());
-        setVisible(false);
-        login.setVisible(true);
+        try{
+            Date date = jDateChooser1.getDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String str = formatter.format(date);
+            Connection conn = Koneksi.getConnection();
+            String query = "INSERT INTO mentalku.user (nama_lengkap, username, password, jenis_kelamin, tgl_lahir, pendidikan_terakhir) values('" + jTextField1.getText() + "','" + jTextField5.getText() + "','" + jPasswordField1.getText() + "','" +
+                jComboBox1.getSelectedItem().toString() + "','" + str + "','" + jComboBox2.getSelectedItem().toString()+ "')";
+
+            Statement sta = conn.createStatement();
+            int x = sta.executeUpdate(query);
+            if(x == 0){
+                JOptionPane.showMessageDialog(null, "Akun anda gagal ter-register, silahkan coba lagi.", "Registrasi Akun", JOptionPane.PLAIN_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Akun anda berhasil ter-register, silahkan lanjut untuk login akun.", "Registrasi Akun", JOptionPane.PLAIN_MESSAGE);
+                Login login = new Login();
+                login.setStatusRegis(true);
+                login.setNama(jTextField1.getText());
+                login.setJkel(jComboBox1.getSelectedItem().toString());
+                date = jDateChooser1.getDate();
+                formatter = new SimpleDateFormat("dd/MM/yyyy");
+                str = formatter.format(date);
+                login.settanggalLahir(str);
+                login.setPendidikan(jComboBox2.getSelectedItem().toString());
+                login.setUsername(jTextField5.getText());
+                setVisible(false);
+                login.setVisible(true);
+                }
+            
+        }catch(SQLException e){
+            System.out.print(e);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -348,6 +374,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -365,7 +392,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

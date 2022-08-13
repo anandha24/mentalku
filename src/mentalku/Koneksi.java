@@ -18,7 +18,7 @@ public class Koneksi {
         String jdbc_driver = "com.mysql.cj.jdbc.Driver";
         String user = "root";
         String pass = "";
-        String url = "jdbc:mysql://localhost:3306/mentalku";
+        String url = "jdbc:mysql://localhost:3306/mentalku?allowMultiQueries=true";
         try{
             conn = DriverManager.getConnection(url, user, pass);
             System.out.print("Berhasil konek");
