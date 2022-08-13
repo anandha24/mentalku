@@ -422,6 +422,7 @@ public class InputData extends javax.swing.JFrame {
             String str = formatter.format(date);
 
                 String id_psikolog;
+                String anxiety;
                 outp.setNama(this.nama);
                 outp.setJkel(this.Jkel);
                 outp.setPendidikan(this.Pend);
@@ -453,9 +454,11 @@ public class InputData extends javax.swing.JFrame {
                 if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
                     outp.setAnxiety("Cemas");
                     outp.setAspek(this.nama + " Sedang Mengalami Kecemasan");
+                    anxiety = "Cemas";
                 }else{
                     outp.setAnxiety("Tidak cemas");
                     outp.setAspek(this.nama + " Tidak Sedang Mengalami Kecemasan");
+                    anxiety = "Tidak cemas";
                 }
                 if(cbpemeriksa.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){
                     outp.setPsikolog(Psi1);
@@ -468,8 +471,8 @@ public class InputData extends javax.swing.JFrame {
                 }
 
             Connection conn = Koneksi.getConnection();
-            String query = "SET FOREIGN_KEY_CHECKS=0; INSERT INTO mentalku.pemeriksaan (t_pemeriksaan, tujuan, suhu_badan, limb_movement, oksigen_darah, detak_jantung, id_psikolog, id_pasien) values('" + str + "','" + "Pemeriksaan Psikologis Pra-Klinis Kecemasan" + "','" + Double.valueOf(jTextField6.getText()) + "','" +
-                Double.valueOf(jTextField2.getText()) + "','" + Double.valueOf(jTextField3.getText()) + "','" + Double.valueOf(jTextField4.getText()) + "','" + id_psikolog + "','" + this.id_pasien + "'); SET FOREIGN_KEY_CHECKS=1;";
+            String query = "SET FOREIGN_KEY_CHECKS=0; INSERT INTO mentalku.pemeriksaan (t_pemeriksaan, tujuan, suhu_badan, limb_movement, oksigen_darah, detak_jantung, id_psikolog, id_pasien, anxiety) values('" + str + "','" + "Pemeriksaan Psikologis Pra-Klinis Kecemasan" + "','" + Double.valueOf(jTextField6.getText()) + "','" +
+                Double.valueOf(jTextField2.getText()) + "','" + Double.valueOf(jTextField3.getText()) + "','" + Double.valueOf(jTextField4.getText()) + "','" + id_psikolog + "','" + this.id_pasien + "','" + anxiety + "'); SET FOREIGN_KEY_CHECKS=1;";
 
             Statement sta = conn.createStatement();
             int x = sta.executeUpdate(query);
