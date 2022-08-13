@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import java.sql.Statement;
+import java.sql.SQLException;
 // import java.text.ParseException;
 import java.util.Date;
 
@@ -24,6 +27,7 @@ public class InputData extends javax.swing.JFrame {
     protected String Pend;
     protected String username;
     protected String tanggalLahir;
+    protected String id_pasien;
     private double suhu;
     private double limb;
     private double oksigen;
@@ -100,6 +104,14 @@ public class InputData extends javax.swing.JFrame {
     public Double getDetak() {
         return this.detak;
     }
+
+    public void setIdPasien(String id){
+        this.id_pasien = id;
+    }
+
+    public String getIdPasien(){
+        return this.id_pasien;
+    }
     
     private void AddCombobox(){
         try{
@@ -173,7 +185,10 @@ public class InputData extends javax.swing.JFrame {
 
         jLabel2.setText("Tanggal Pemeriksaan: ");
 
-        jLabel7.setText("tanggal");
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String str = formatter.format(date);
+        jLabel7.setText(str);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -401,49 +416,74 @@ public class InputData extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Output outp = new Output();
         // setVisible(false);
-        outp.setNama(this.nama);
-        outp.setJkel(this.Jkel);
-        outp.setPendidikan(this.Pend);
-        outp.settanggalLahir(this.tanggalLahir);
-        outp.setUsername(this.username);
-        outp.setLimb(Double.valueOf(jTextField2.getText()));
-        outp.setSuhu(Double.valueOf(jTextField6.getText()));
-        outp.setOksigen(Double.valueOf(jTextField3.getText()));
-        outp.setDetak(Double.valueOf(jTextField4.getText()));
-        CekOrang pasien =  new CekOrang();
-        pasien.setLimb(Double.valueOf(jTextField2.getText()));
-        pasien.setSuhu(Double.valueOf(jTextField6.getText()));
-        pasien.setOksigen(Double.valueOf(jTextField3.getText()));
-        pasien.setDetak(Double.valueOf(jTextField4.getText()));
-        pasien.setFrekuensiPrediksi();
-        pasien.setJenisSuhu();
-        pasien.setJenisLimb();
-        pasien.setJenisOksigen();
-        pasien.setJenisDetak();
-        pasien.setFYaTidak(pasien.getJenisLimb(), pasien.getJenisSuhu(), pasien.getJenisOksigen(),
-                        pasien.getJenisDetak());
+        try{
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String str = formatter.format(date);
 
-        pasien.ProbYa(pasien.getFYa(), pasien.getFTidak());
-        pasien.ProbTidak(pasien.getFYa(), pasien.getFTidak());
-        pasien.ProbNBayesYa(pasien.getProbYa(), pasien.getProbTidak());
-        pasien.ProbNBayesTidak(pasien.getProbYa(), pasien.getProbTidak());
-        pasien.setProb(pasien.getProbBayesYa(), pasien.getProbBayesTidak());
-        if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
-            outp.setAnxiety("Iya");
-            outp.setAspek(this.nama + "Sedang Mengalami Kecemasan");
-        }else{
-            outp.setAnxiety("Tidak");
-            outp.setAspek(this.nama + "Tidak Sedang Mengalami Kecemasan");
+                String id_psikolog;
+                outp.setNama(this.nama);
+                outp.setJkel(this.Jkel);
+                outp.setPendidikan(this.Pend);
+                outp.settanggalLahir(this.tanggalLahir);
+                outp.setUsername(this.username);
+                outp.setLimb(Double.valueOf(jTextField2.getText()));
+                outp.setSuhu(Double.valueOf(jTextField6.getText()));
+                outp.setOksigen(Double.valueOf(jTextField3.getText()));
+                outp.setDetak(Double.valueOf(jTextField4.getText()));
+                outp.setIdPasien(this.id_pasien);
+                CekOrang pasien =  new CekOrang();
+                pasien.setLimb(Double.valueOf(jTextField2.getText()));
+                pasien.setSuhu(Double.valueOf(jTextField6.getText()));
+                pasien.setOksigen(Double.valueOf(jTextField3.getText()));
+                pasien.setDetak(Double.valueOf(jTextField4.getText()));
+                pasien.setFrekuensiPrediksi();
+                pasien.setJenisSuhu();
+                pasien.setJenisLimb();
+                pasien.setJenisOksigen();
+                pasien.setJenisDetak();
+                pasien.setFYaTidak(pasien.getJenisLimb(), pasien.getJenisSuhu(), pasien.getJenisOksigen(),
+                                pasien.getJenisDetak());
+
+                pasien.ProbYa(pasien.getFYa(), pasien.getFTidak());
+                pasien.ProbTidak(pasien.getFYa(), pasien.getFTidak());
+                pasien.ProbNBayesYa(pasien.getProbYa(), pasien.getProbTidak());
+                pasien.ProbNBayesTidak(pasien.getProbYa(), pasien.getProbTidak());
+                pasien.setProb(pasien.getProbBayesYa(), pasien.getProbBayesTidak());
+                if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
+                    outp.setAnxiety("Cemas");
+                    outp.setAspek(this.nama + " Sedang Mengalami Kecemasan");
+                }else{
+                    outp.setAnxiety("Tidak cemas");
+                    outp.setAspek(this.nama + " Tidak Sedang Mengalami Kecemasan");
+                }
+                if(cbpemeriksa.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){
+                    outp.setPsikolog(Psi1);
+                    outp.setKodePsikolog(kPsi1);
+                    id_psikolog = kPsi1;
+                }else{
+                    outp.setPsikolog(Psi2);
+                    outp.setKodePsikolog(kPsi2);
+                    id_psikolog = kPsi2;
+                }
+
+            Connection conn = Koneksi.getConnection();
+            String query = "SET FOREIGN_KEY_CHECKS=0; INSERT INTO mentalku.pemeriksaan (t_pemeriksaan, tujuan, suhu_badan, limb_movement, oksigen_darah, detak_jantung, id_psikolog, id_pasien) values('" + str + "','" + "Pemeriksaan Psikologis Pra-Klinis Kecemasan" + "','" + Double.valueOf(jTextField6.getText()) + "','" +
+                Double.valueOf(jTextField2.getText()) + "','" + Double.valueOf(jTextField3.getText()) + "','" + Double.valueOf(jTextField4.getText()) + "','" + id_psikolog + "','" + this.id_pasien + "'); SET FOREIGN_KEY_CHECKS=1;";
+
+            Statement sta = conn.createStatement();
+            int x = sta.executeUpdate(query);
+            if(x == 0){
+                // outp.addRow();
+                outp.setOutput();
+                outp.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Data Gagal Dimasukkan, silahkan coba lagi.", "Diagnosa Pasien", JOptionPane.PLAIN_MESSAGE);
+            }
+            
+        }catch(SQLException e){
+            System.out.print(e);
         }
-        if(cbpemeriksa.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){
-            outp.setPsikolog(Psi1);
-            outp.setKodePsikolog(kPsi1);
-        }else{
-            outp.setPsikolog(Psi2);
-            outp.setKodePsikolog(kPsi2);
-        }
-        outp.addRow();
-        outp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbpemeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbpemeriksaActionPerformed

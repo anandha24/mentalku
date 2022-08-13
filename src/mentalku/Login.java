@@ -4,6 +4,16 @@
  */
 package mentalku;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 /**
  *
  * @author AF Syauqi
@@ -14,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     protected String Pend;
     protected String username;
     protected String tanggalLahir;
+    protected String id_pasien;
     protected Boolean statusRegis = false;
 
     public void setNama(String nama) {
@@ -54,6 +65,14 @@ public class Login extends javax.swing.JFrame {
 
     public String getUsername(){
         return this.username;
+    }
+
+    public void setIdPasien(String id){
+        this.id_pasien = id;
+    }
+
+    public String getIdPasien(){
+        return this.id_pasien;
     }
 
 
@@ -259,15 +278,44 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         InputData id = new InputData();
-        if(statusRegis){
-            id.setNama(this.nama);
-            id.setJkel(this.Jkel);
-            id.setPendidikan(this.Pend);
-            id.settanggalLahir(this.tanggalLahir);
-            id.setUsername(this.username);
+        try{
+            Connection conn = Koneksi.getConnection();
+            char[] pass = jPasswordField1.getPassword();
+            String sql = "SELECT * FROM mentalku.user WHERE username='"+jTextField1.getText()+"' AND password='"+jPasswordField1.getText()+"'";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                if(jTextField1.getText().equals(rs.getString("username")) && jPasswordField1.getText().equals(rs.getString("password"))){
+                    JOptionPane.showMessageDialog(null, "berhasil login");
+                    if(statusRegis){
+                        id.setNama(this.nama);
+                        id.setJkel(this.Jkel);
+                        id.setPendidikan(this.Pend);
+                        id.settanggalLahir(this.tanggalLahir);
+                        id.setUsername(this.username);
+                        id.setIdPasien(rs.getString("id_pasien"));
+                    }
+                        id.setNama(rs.getString("nama_lengkap"));
+                        id.setJkel(rs.getString("jenis_kelamin"));
+                        id.setPendidikan(rs.getString("pendidikan_terakhir"));
+                        id.settanggalLahir(rs.getString("tgl_lahir"));
+                        id.setUsername(rs.getString("username"));
+                        id.setIdPasien(rs.getString("id_pasien"));
+                        setVisible(false);
+                        id.setVisible(true);
+                    if(jTextField1.getText().equals("admin") && jPasswordField1.getText().equals("admin123")){
+                        Admin admin = new Admin();
+                        admin.setVisible(true);
+                        id.setVisible(false);
+                    }
+                }
+            }else{
+                    JOptionPane.showMessageDialog(null, "username atau password salah");
+                }
+            
+        }catch(SQLException e){
+            System.out.print(e);
         }
-        setVisible(false);
-        id.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
