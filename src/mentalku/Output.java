@@ -161,6 +161,10 @@ public class Output extends javax.swing.JFrame {
         model.addRow(new Object[]{this.suhu, this.limb, this.oksigen, this.detak, this.anxiety});
     }
 
+    public void setInterpretasi(String a){
+        jLabel17.setText(a);
+    }
+
     public void setOutput(){
         try{
             Connection conn = Koneksi.getConnection();
@@ -225,14 +229,14 @@ public class Output extends javax.swing.JFrame {
                 // {null, null, null, null, null}
             },
             new String [] {
-                "Body Temperature", "Limb Movement Rate", "Blood Oxygen Rate", "Heart Rate", "Anxienty"
+                "Suhu Badan", "Rasio Pergerakan Bibir", "Kadar Oksigen Darah", "Rasio Detak Jantung", "Status Kecemasan"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LAPORAN PEMERIKSAAN PSIKOLOGIS");
+        jLabel1.setText("LAPORAN PEMERIKSAAN PRA-KLINIS PSIKOLOGIS");
 
         jLabel3.setText("IDENTITAS");
 
@@ -263,7 +267,7 @@ public class Output extends javax.swing.JFrame {
 
         jLabel15.setText("[Aspek yang diungkap]");
 
-        jLabel16.setText("Kesimpulan & Saran");
+        jLabel16.setText("Interpretasi Hasil");
 
         jLabel17.setText("<Diisi sesuai analisis psikolog, menyusul>.......");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);

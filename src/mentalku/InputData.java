@@ -213,7 +213,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setText("Limb movement rate");
+        jLabel3.setText("Pergerakan Bibir");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -238,7 +238,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setText("Blood oxygen levels");
+        jLabel4.setText("Kadar Darah Oksigen");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -263,7 +263,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setText("Heart rate");
+        jLabel5.setText("Rasio Detak Jantung");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -330,7 +330,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setText("Body Temperature");
+        jLabel8.setText("Suhu Badan");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -454,10 +454,12 @@ public class InputData extends javax.swing.JFrame {
                 if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
                     outp.setAnxiety("Cemas");
                     outp.setAspek(this.nama + " Sedang Mengalami Kecemasan");
+                    outp.setInterpretasi("Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan.\n Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.");
                     anxiety = "Cemas";
                 }else{
                     outp.setAnxiety("Tidak cemas");
                     outp.setAspek(this.nama + " Tidak Sedang Mengalami Kecemasan");
+                    outp.setInterpretasi("Hasil pemeriksaan pra klinis menunjukkan indikasi tidak ada potensi gangguan kecemasan. \nBagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.");
                     anxiety = "Tidak cemas";
                 }
                 if(cbpemeriksa.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){
