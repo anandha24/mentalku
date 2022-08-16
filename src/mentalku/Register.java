@@ -330,6 +330,7 @@ public class Register extends javax.swing.JFrame {
                 }
             
         }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Akun anda gagal ter-register karena sudah ada akun dengan username yang sama telah terdaftar, silahkan coba lagi.", "Registrasi Akun", JOptionPane.PLAIN_MESSAGE);
             System.out.print(e);
         }
         
