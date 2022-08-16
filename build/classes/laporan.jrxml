@@ -124,8 +124,11 @@
 		</box>
 	</style>
 	<subDataset name="Pemeriksaan2" uuid="c74b9970-7175-4e52-abe6-3042c5e2492e">
+		<parameter name="tabel_pasien" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
 		<queryString>
-			<![CDATA[select DATE_FORMAT(p.t_pemeriksaan, "%d-%m-%Y"), p.suhu_badan, p.limb_movement, p.oksigen_darah, p.detak_jantung, p.anxiety from mentalku.pemeriksaan as p]]>
+			<![CDATA[select DATE_FORMAT(p.t_pemeriksaan, "%d-%m-%Y"), p.suhu_badan, p.limb_movement, p.oksigen_darah, p.detak_jantung, p.anxiety from mentalku.pemeriksaan as p where p.id_pasien = $P{tabel_pasien}]]>
 		</queryString>
 		<field name="DATE_FORMAT(p.t_pemeriksaan, &quot;%d-%m-%Y&quot;)" class="java.lang.String"/>
 		<field name="suhu_badan" class="java.lang.Double">
@@ -289,7 +292,10 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 			<componentElement>
 				<reportElement key="table 5" style="table 5" x="0" y="36" width="515" height="50" uuid="07dbbd25-d7d0-46d3-8752-a20ec1bcee6c"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Pemeriksaan2" uuid="7ba28976-b4e7-491c-bcea-5ce2309be321">
+					<datasetRun subDataset="Pemeriksaan2" uuid="bcb5d4ea-99ad-43b6-af24-bb1a1887ea90">
+						<datasetParameter name="tabel_pasien">
+							<datasetParameterExpression><![CDATA[$P{id_pasien}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
 					<jr:column width="80" uuid="6fa741b7-59d9-4fd8-adf8-13ceaa95e803">

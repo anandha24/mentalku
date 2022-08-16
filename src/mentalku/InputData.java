@@ -453,13 +453,11 @@ public class InputData extends javax.swing.JFrame {
                 pasien.setProb(pasien.getProbBayesYa(), pasien.getProbBayesTidak());
                 if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
                     outp.setAnxiety("Cemas");
-                    outp.setAspek(this.nama + " Sedang Mengalami Kecemasan");
-                    outp.setInterpretasi("Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan.\n Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.");
+                    outp.setInterpretasi("<html><p>Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan.\n Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.</p></html>");
                     anxiety = "Cemas";
                 }else{
                     outp.setAnxiety("Tidak cemas");
-                    outp.setAspek(this.nama + " Tidak Sedang Mengalami Kecemasan");
-                    outp.setInterpretasi("Hasil pemeriksaan pra klinis menunjukkan indikasi tidak ada potensi gangguan kecemasan. \nBagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.");
+                    outp.setInterpretasi("<html><p>Hasil pemeriksaan pra klinis menunjukkan indikasi tidak ada potensi gangguan kecemasan. \nBagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.</html></p>");
                     anxiety = "Tidak cemas";
                 }
                 if(cbpemeriksa.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){

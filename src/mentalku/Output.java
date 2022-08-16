@@ -133,11 +133,6 @@ public class Output extends javax.swing.JFrame {
         this.anxiety = cemas;
     }
 
-    public void setAspek(String aspek){
-        this.aspek = aspek;
-        jLabel15.setText(aspek);
-    }
-
     public void setPsikolog(String psikolog) {
         this.psikolog = psikolog;
         jLabel21.setText(psikolog);
@@ -212,7 +207,6 @@ public class Output extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -226,17 +220,17 @@ public class Output extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                // {null, null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Suhu Badan", "Rasio Pergerakan Bibir", "Kadar Oksigen Darah", "Rasio Detak Jantung", "Status Kecemasan"
+                "Body Temperature", "Limb Movement Rate", "Blood Oxygen Rate", "Heart Rate", "Anxienty"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LAPORAN PEMERIKSAAN PRA-KLINIS PSIKOLOGIS");
+        jLabel1.setText("LAPORAN PEMERIKSAAN PSIKOLOGIS");
 
         jLabel3.setText("IDENTITAS");
 
@@ -256,23 +250,21 @@ public class Output extends javax.swing.JFrame {
 
         jLabel11.setText("[Nama Lengkap]");
 
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String str = formatter.format(date);
-        jLabel12.setText(str);
+        jLabel12.setText(" xx/xx/xxxx");
 
         jLabel13.setText(" xx/xx/xxxx");
 
-        jLabel14.setText("Pemeriksaan Pra-Klinis Kecemasan Diri");
+        jLabel14.setText("[Tujuan Pemeriksaan]");
 
-        jLabel15.setText("[Aspek yang diungkap]");
-
-        jLabel16.setText("Interpretasi Hasil");
+        jLabel16.setText("Kesimpulan & Saran");
 
         jLabel17.setText("<Diisi sesuai analisis psikolog, menyusul>.......");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel17.setMaximumSize(new java.awt.Dimension(319, 16));
+        jLabel17.setMinimumSize(new java.awt.Dimension(319, 16));
+        jLabel17.setPreferredSize(new java.awt.Dimension(319, 16));
 
-        jLabel18.setText("Malang, " + str);
+        jLabel18.setText("Waktu cetak");
 
         jLabel19.setText("Psikolog Indonesia");
 
@@ -314,12 +306,11 @@ public class Output extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -360,9 +351,7 @@ public class Output extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel15))
+                .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -448,7 +437,6 @@ public class Output extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
