@@ -230,7 +230,7 @@ public class Output extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LAPORAN PEMERIKSAAN PSIKOLOGIS");
+        jLabel1.setText("LAPORAN PEMERIKSAAN PRA-KLINIS PSIKOLOGIS");
 
         jLabel3.setText("IDENTITAS");
 
@@ -251,7 +251,7 @@ public class Output extends javax.swing.JFrame {
         jLabel11.setText("[Nama Lengkap]");
 
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String str = formatter.format(date);
         jLabel12.setText(str);
 
@@ -267,7 +267,7 @@ public class Output extends javax.swing.JFrame {
         jLabel17.setMinimumSize(new java.awt.Dimension(319, 16));
         jLabel17.setPreferredSize(new java.awt.Dimension(319, 16));
 
-        jLabel18.setText("Waktu cetak");
+        jLabel18.setText("Malang, " + str);
 
         jLabel19.setText("Psikolog Indonesia");
 
