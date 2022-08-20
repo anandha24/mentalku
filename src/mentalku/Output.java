@@ -237,14 +237,14 @@ public class Output extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Body Temperature", "Limb Movement Rate", "Blood Oxygen Rate", "Heart Rate", "Anxienty"
+                "Suhu Badan", "Rasio Pergerakan Bibir", "Kadar Oksigen Darah", "Rasio Detak Jantung", "Status Kecemasan"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LAPORAN PEMERIKSAAN PSIKOLOGIS");
+        jLabel1.setText("LAPORAN PEMERIKSAAN PRA-KLINIS PSIKOLOGIS");
 
         jLabel3.setText("IDENTITAS");
 
@@ -258,19 +258,22 @@ public class Output extends javax.swing.JFrame {
 
         jLabel8.setText("Tujuan pemeriksaan");
 
-        jLabel9.setText("Aspek yang  diungkap");
+        jLabel9.setText("Aspek yang diungkap");
 
         jLabel10.setText("[Pendidikan Terakhir]");
 
         jLabel11.setText("[Nama Lengkap]");
 
-        jLabel12.setText(" xx/xx/xxxx");
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String str = formatter.format(date);
+        jLabel12.setText(str);
 
         jLabel13.setText(" xx/xx/xxxx");
 
-        jLabel14.setText("[Tujuan Pemeriksaan]");
+        jLabel14.setText("Penelusuran Status Kecemasan");
 
-        jLabel16.setText("Kesimpulan & Saran");
+        jLabel16.setText("Interpretasi Hasil");
 
         jLabel17.setText("<Diisi sesuai analisis psikolog, menyusul>.......");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -278,7 +281,7 @@ public class Output extends javax.swing.JFrame {
         jLabel17.setMinimumSize(new java.awt.Dimension(319, 16));
         jLabel17.setPreferredSize(new java.awt.Dimension(319, 16));
 
-        jLabel18.setText("Waktu cetak");
+        jLabel18.setText("Malang, " + str);
 
         jLabel19.setText("Psikolog Indonesia");
 
