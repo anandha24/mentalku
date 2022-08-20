@@ -116,12 +116,12 @@ public class InputData extends javax.swing.JFrame {
     private void AddCombobox(){
         try{
             Connection conn = Koneksi.getConnection();
-            String sql = "SELECT nama_psikolog, sipp_reg FROM mentalku.psikolog";
+            String sql = "SELECT nama_psikolog, sik_himpsi FROM mentalku.psikolog";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             
             while(rs.next()){
-                String item = rs.getString("nama_psikolog") +" - "+ rs.getString("sipp_reg");
+                String item = rs.getString("nama_psikolog") +" - "+ rs.getString("sik_himpsi");
                 cbpemeriksa.addItem(item);
             }
         }catch(Exception e){
@@ -421,7 +421,7 @@ public class InputData extends javax.swing.JFrame {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String str = formatter.format(date);
 
-                String id_psikolog;
+                int id_psikolog = 0;
                 String anxiety;
                 outp.setNama(this.nama);
                 outp.setJkel(this.Jkel);
@@ -453,26 +453,34 @@ public class InputData extends javax.swing.JFrame {
                 pasien.setProb(pasien.getProbBayesYa(), pasien.getProbBayesTidak());
                 if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
                     outp.setAnxiety("Cemas");
-                    outp.setInterpretasi("<html><p>Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan.\n Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.</p></html>");
+                    outp.setInterpretasi("Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.");
                     anxiety = "Cemas";
                 }else{
                     outp.setAnxiety("Tidak cemas");
-                    outp.setInterpretasi("<html><p>Hasil pemeriksaan pra klinis menunjukkan indikasi tidak ada potensi gangguan kecemasan. \nBagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, \nsehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.</html></p>");
+                    outp.setInterpretasi("Hasil pemeriksaan pra klinis menunjukkan indikasi tidak ada potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.");
                     anxiety = "Tidak cemas";
                 }
-                if(cbpemeriksa.getSelectedItem().toString().equals(Psi1 + " - " + kPsi1)){
-                    outp.setPsikolog(Psi1);
-                    outp.setKodePsikolog(kPsi1);
-                    id_psikolog = kPsi1;
-                }else{
-                    outp.setPsikolog(Psi2);
-                    outp.setKodePsikolog(kPsi2);
-                    id_psikolog = kPsi2;
+                Connection conn = Koneksi.getConnection();
+                String himpsi, psikolog;
+                psikolog = cbpemeriksa.getSelectedItem().toString();
+                himpsi = psikolog.substring(psikolog.lastIndexOf(" ")+1);
+                psikolog = psikolog.substring(0, psikolog.indexOf("-")-1);
+                System.out.print(himpsi + " - " + psikolog);
+                
+                String sql = "SELECT * from mentalku.psikolog";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+                while(rs.next()){
+                    if(rs.getString("sik_himpsi").equals(himpsi)){
+                        outp.setPsikolog(psikolog);
+                        outp.setKodePsikolog(himpsi);
+                        id_psikolog = rs.getInt("id_psikolog");
+                    }
                 }
 
-            Connection conn = Koneksi.getConnection();
+            
             String query = "SET FOREIGN_KEY_CHECKS=0; INSERT INTO mentalku.pemeriksaan (t_pemeriksaan, tujuan, suhu_badan, limb_movement, oksigen_darah, detak_jantung, id_psikolog, id_pasien, anxiety) values('" + str + "','" + "Pemeriksaan Psikologis Pra-Klinis Kecemasan" + "','" + Double.valueOf(jTextField6.getText()) + "','" +
-                Double.valueOf(jTextField2.getText()) + "','" + Double.valueOf(jTextField3.getText()) + "','" + Double.valueOf(jTextField4.getText()) + "','" + id_psikolog + "','" + this.id_pasien + "','" + anxiety + "'); SET FOREIGN_KEY_CHECKS=1;";
+                Double.valueOf(jTextField2.getText()) + "','" + Double.valueOf(jTextField3.getText()) + "','" + Double.valueOf(jTextField4.getText()) + "','" + String.valueOf(id_psikolog) + "','" + this.id_pasien + "','" + anxiety + "'); SET FOREIGN_KEY_CHECKS=1;";
 
             Statement sta = conn.createStatement();
             int x = sta.executeUpdate(query);

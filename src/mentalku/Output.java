@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.HashMap;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -41,6 +42,7 @@ public class Output extends javax.swing.JFrame {
     protected String username;
     protected String tanggalLahir;
     protected String id_pasien;
+    protected String interpretasi;
     private double suhu;
     private double limb;
     private double oksigen;
@@ -157,19 +159,22 @@ public class Output extends javax.swing.JFrame {
     }
 
     public void setInterpretasi(String a){
-        jLabel17.setText(a);
+        String start = "<html><p>",end = "</html></p>";
+        jLabel17.setText(start+a+end);
+        interpretasi = a;
     }
 
     public void setOutput(){
         try{
             Connection conn = Koneksi.getConnection();
-            String sql = "SELECT suhu_badan, limb_movement, oksigen_darah, detak_jantung, anxiety FROM mentalku.pemeriksaan";
+            String sql = "SELECT suhu_badan, limb_movement, oksigen_darah, detak_jantung, anxiety FROM mentalku.pemeriksaan where id_pasien = "+getId();
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.addRow(new Object[]{rs.getString("suhu_badan"), rs.getString("limb_movement"), rs.getString("oksigen_darah"), rs.getString("detak_jantung"), rs.getString("anxiety")});
             }
+            conn.close();
         }catch(SQLException e){
             System.out.print(e);
         }
@@ -178,8 +183,17 @@ public class Output extends javax.swing.JFrame {
     /**
      * Creates new form Output
      */
+    private void fillForm(){
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        jLabel12.setText(sdf.format(cal.getTime()));
+        jLabel18.setText(sdf.format(cal.getTime()));
+        jLabel14.setText("Diagnosa Kecemasan");
+    }
+    
     public Output() {
         initComponents();
+        fillForm();
         this.setLocationRelativeTo(null);
     }
 
@@ -385,6 +399,7 @@ public class Output extends javax.swing.JFrame {
          try {
             HashMap map = new HashMap();
             map.put("id_pasien", getId());
+            map.put("kesimpulan", interpretasi);
              
             File namafile = new File("src/laporan.jasper");
             JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), map, Koneksi.getConnection());

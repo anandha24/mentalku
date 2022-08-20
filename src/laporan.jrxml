@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="9c8f9e30-c315-402e-ba37-b111e59a609a">
-	<property name="ireport.zoom" value="1.3310000000000015"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -148,11 +148,14 @@
 		</field>
 	</subDataset>
 	<parameter name="id_pasien" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kesimpulan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select mentalku.user.nama_lengkap, mentalku.user.tgl_lahir, mentalku.user.pendidikan_terakhir,
-mentalku.psikolog.nama_psikolog, mentalku.psikolog.sik_himpsi, mentalku.pemeriksaan.tujuan, 
+		<![CDATA[select mentalku.user.nama_lengkap, mentalku.user.pendidikan_terakhir,
+mentalku.psikolog.nama_psikolog, mentalku.psikolog.sik_himpsi, mentalku.pemeriksaan.tujuan, mentalku.pemeriksaan.id_pasien,date_format(mentalku.user.tgl_lahir, "%d-%m-%Y") as tgl_lahir,
 date_format(current_date(), "%d-%m-%Y") as waktu_cetak
 from mentalku.pemeriksaan 
 inner join mentalku.user on mentalku.pemeriksaan.id_pasien = mentalku.user.id_pasien 
@@ -160,9 +163,6 @@ inner join mentalku.psikolog on mentalku.pemeriksaan.id_psikolog = mentalku.psik
 where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 	</queryString>
 	<field name="nama_lengkap" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="tgl_lahir" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="pendidikan_terakhir" class="java.lang.String">
@@ -177,6 +177,10 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 	<field name="tujuan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="id_pasien" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_lahir" class="java.lang.String"/>
 	<field name="waktu_cetak" class="java.lang.String"/>
 	<filterExpression><![CDATA[new Boolean(true)]]></filterExpression>
 	<background>
@@ -245,14 +249,14 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 				<text><![CDATA[IDENTITAS DIRI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="302" y="33" width="53" height="20" uuid="8a93b0c8-c135-463c-b3de-0603d3bbb8c3"/>
+				<reportElement x="270" y="33" width="53" height="20" uuid="8a93b0c8-c135-463c-b3de-0603d3bbb8c3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="11"/>
 				</textElement>
 				<text><![CDATA[Tujuan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="33" width="14" height="20" uuid="13f91690-0127-4086-82c3-419b8a16ebe6"/>
+				<reportElement x="323" y="33" width="14" height="20" uuid="13f91690-0127-4086-82c3-419b8a16ebe6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -274,7 +278,7 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 				<textFieldExpression><![CDATA[$F{tgl_lahir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="369" y="33" width="146" height="20" uuid="9f2f40e8-4481-4ec5-a88c-6e13b54c2f77"/>
+				<reportElement x="337" y="33" width="178" height="20" uuid="9f2f40e8-4481-4ec5-a88c-6e13b54c2f77"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tujuan}]]></textFieldExpression>
 			</textField>
@@ -413,10 +417,6 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 	<columnFooter>
 		<band height="337" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="36" width="515" height="89" uuid="b729e403-9acb-48fa-9e47-84397a7ce0dc"/>
-				<text><![CDATA[	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="0" width="515" height="36" uuid="c133cee3-0ee3-4a5c-a3eb-dcd936f1756b"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
@@ -451,6 +451,10 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 				<reportElement x="369" y="173" width="146" height="20" uuid="6e6c007f-e3fe-448a-8fc7-9dc4be0f01b5"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{waktu_cetak}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="36" width="515" height="122" uuid="87e0040f-09f9-4c14-837b-42b94d5834fa"/>
+				<textFieldExpression><![CDATA[$P{kesimpulan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>

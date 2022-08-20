@@ -21,7 +21,6 @@ public class Koneksi {
         String url = "jdbc:mysql://localhost:3306/mentalku?allowMultiQueries=true";
         try{
             conn = DriverManager.getConnection(url, user, pass);
-            System.out.print("Berhasil konek");
         }catch(SQLException e){
             System.out.println(e);
         }
