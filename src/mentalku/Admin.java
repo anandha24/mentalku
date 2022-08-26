@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,6 +27,8 @@ public class Admin extends javax.swing.JFrame {
         model.addColumn("No. HIMPSI");
         model.addColumn("Status");
         tabelpsikolog.setModel(model);
+        tabelpsikolog.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        
         try{
             Connection conn = Koneksi.getConnection();
             String sql = "SELECT nama_psikolog, sik_himpsi, sipp_reg, status FROM mentalku.psikolog";
@@ -33,8 +36,8 @@ public class Admin extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 String nama = rs.getString("nama_psikolog");
-                String sik = rs.getString("sik_himpsi");
-                String himpsi = rs.getString("sipp_reg");
+                String himpsi = rs.getString("sik_himpsi");
+                String sik = rs.getString("sipp_reg");
                 String status = rs.getString("status");
                 
                 String[] item = {nama, sik, himpsi, status};
@@ -90,6 +93,11 @@ public class Admin extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 51, 51));
         jButton1.setText("Hapus");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 255));
@@ -144,11 +152,30 @@ public class Admin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         AddPsikolog adPsi = new AddPsikolog(this);
         adPsi.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(tabelpsikolog.getSelectedRow() != -1){
+            int konfirm = JOptionPane.showConfirmDialog(null, "Apakah anda yakin? data akan dihapus permanen","Konfirmasi",JOptionPane.OK_CANCEL_OPTION);
+            if(konfirm == 0){
+                 DefaultTableModel model = (DefaultTableModel) tabelpsikolog.getModel();
+                 String himpsi = model.getValueAt(tabelpsikolog.getSelectedRow(), 2).toString();
+                 try{
+                    Connection conn = Koneksi.getConnection();
+                    PreparedStatement stmt = conn.prepareStatement("DELETE FROM mentalku.psikolog WHERE sipp_reg = '"+himpsi+"'");
+                    stmt.execute();
+                 }catch(Exception e){
+                     
+                 }
+                 
+                 model.removeRow(tabelpsikolog.getSelectedRow());
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

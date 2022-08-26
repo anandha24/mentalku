@@ -143,8 +143,8 @@ public class AddPsikolog extends javax.swing.JFrame {
            String sql = "INSERT INTO mentalku.psikolog (nama_psikolog, sik_himpsi, sipp_reg, link_bukti_surat) VALUES (?,?,?,?)";
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1, namapsi.getText());
-           stmt.setString(2, sikpsi.getText());
-           stmt.setString(3, himpsi.getText());
+           stmt.setString(2, himpsi.getText());
+           stmt.setString(3, sikpsi.getText());
            stmt.setString(4, kartupsi.getText());
            stmt.execute();
            conn.close();
