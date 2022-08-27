@@ -23,8 +23,8 @@ public class Admin extends javax.swing.JFrame {
     public void IsiTabel(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nama Psikolog");
-        model.addColumn("SIK Psikolog");
         model.addColumn("No. HIMPSI");
+        model.addColumn("SIK Psikolog");
         model.addColumn("Status");
         tabelpsikolog.setModel(model);
         tabelpsikolog.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -84,7 +84,7 @@ public class Admin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nama Psikolog", "SIK Psikolog", "No. HIMPSI", "Status"
+                "Nama Psikolog", "No. HIMPSI", "SIK Psikolog", "Status"
             }
         ));
         jScrollPane1.setViewportView(tabelpsikolog);
@@ -166,7 +166,7 @@ public class Admin extends javax.swing.JFrame {
                  String himpsi = model.getValueAt(tabelpsikolog.getSelectedRow(), 2).toString();
                  try{
                     Connection conn = Koneksi.getConnection();
-                    PreparedStatement stmt = conn.prepareStatement("DELETE FROM mentalku.psikolog WHERE sipp_reg = '"+himpsi+"'");
+                    PreparedStatement stmt = conn.prepareStatement("DELETE FROM mentalku.psikolog WHERE sik_himpsi = '"+himpsi+"'");
                     stmt.execute();
                  }catch(Exception e){
                      
