@@ -12,7 +12,20 @@ import java.sql.Statement;
 import java.sql.SQLException;
 // import java.text.ParseException;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import java.io.File;
 /**
  *
  * @author AF Syauqi
@@ -169,6 +182,7 @@ public class InputData extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -186,7 +200,7 @@ public class InputData extends javax.swing.JFrame {
         jLabel2.setText("Tanggal Pemeriksaan: ");
 
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String str = formatter.format(date);
         jLabel7.setText(str);
 
@@ -213,7 +227,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setText("Pergerakan Bibir");
+        jLabel3.setText("Limb movement rate");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -238,7 +252,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setText("Kadar Darah Oksigen");
+        jLabel4.setText("Blood oxygen levels");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -263,7 +277,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setText("Rasio Detak Jantung");
+        jLabel5.setText("Heart rate");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -321,7 +335,7 @@ public class InputData extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Next");
+        jButton1.setText("Periksa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -330,7 +344,7 @@ public class InputData extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setText("Suhu Badan");
+        jLabel8.setText("Body Temperature");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -353,27 +367,38 @@ public class InputData extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Cetak");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,8 +418,10 @@ public class InputData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -407,7 +434,7 @@ public class InputData extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 60, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         pack();
@@ -451,13 +478,15 @@ public class InputData extends javax.swing.JFrame {
                 pasien.ProbNBayesYa(pasien.getProbYa(), pasien.getProbTidak());
                 pasien.ProbNBayesTidak(pasien.getProbYa(), pasien.getProbTidak());
                 pasien.setProb(pasien.getProbBayesYa(), pasien.getProbBayesTidak());
+                System.out.println(pasien.getProbBayesYa());
+                System.out.println(pasien.getProbBayesTidak());
                 if(pasien.getProbNBayesYa() > pasien.getProbNBayesTidak()){
                     outp.setAnxiety("Cemas");
                     outp.setInterpretasi("Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.");
                     anxiety = "Cemas";
                 }else{
                     outp.setAnxiety("Tidak cemas");
-                    outp.setInterpretasi("Hasil pemeriksaan pra klinis menunjukkan indikasi tidak ada potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.");
+                    outp.setInterpretasi("Hasil pemeriksaan pra klinis terakhir menunjukkan indikasi tidak ada potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.");
                     anxiety = "Tidak cemas";
                 }
                 Connection conn = Koneksi.getConnection();
@@ -465,7 +494,6 @@ public class InputData extends javax.swing.JFrame {
                 psikolog = cbpemeriksa.getSelectedItem().toString();
                 himpsi = psikolog.substring(psikolog.lastIndexOf(" ")+1);
                 psikolog = psikolog.substring(0, psikolog.indexOf("-")-1);
-                System.out.print(himpsi + " - " + psikolog);
                 
                 String sql = "SELECT * from mentalku.psikolog";
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -491,6 +519,44 @@ public class InputData extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(null, "Data Gagal Dimasukkan, silahkan coba lagi.", "Diagnosa Pasien", JOptionPane.PLAIN_MESSAGE);
             }
+            
+        }catch(SQLException e){
+            System.out.print(e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // setVisible(false);
+        try{
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String str = formatter.format(date);
+            String interpretasi = "";
+                Connection conn = Koneksi.getConnection();
+                String sql = "SELECT * from mentalku.pemeriksaan WHERE id_pemeriksaan = (SELECT MAX(id_pemeriksaan) from mentalku.pemeriksaan) AND id_pasien = " + id_pasien + "";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+                while(rs.next()){
+                    if(rs.getString("anxiety").equals("Cemas")){
+                        interpretasi =  "Hasil pemeriksaan pra klinis terakhir menunjukkan adanya potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih. \nJika psikolog telah menyatakan kebenaran gangguan kecemasan, kamu mungkin membutuhkan terapi perilaku kognitif.";
+                    }else{
+                        interpretasi = "Hasil pemeriksaan pra klinis terakhir menunjukkan indikasi tidak ada potensi gangguan kecemasan. Bagaimanapun hasil pemeriksaan pra klinis menggunakan kondisi medis pasien tanpa dilakukan pemeriksaan psikologis, sehingga hasil akhir tidak dapat dijadikan kesimpulan akhir sebelum berkonsultasi dengan psikolog yang telah dipilih.";
+                    }
+                }
+            File reportFile = new File(".");
+            String dirr = "";
+      
+         try {
+            HashMap map = new HashMap();
+            map.put("id_pasien",Integer.valueOf(getIdPasien()));
+            map.put("kesimpulan", interpretasi);
+             
+            File namafile = new File("src/laporan.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), map, Koneksi.getConnection());
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
             
         }catch(SQLException e){
             System.out.print(e);
@@ -539,6 +605,7 @@ public class InputData extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbpemeriksa;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
