@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="9c8f9e30-c315-402e-ba37-b111e59a609a">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.1000000000000003"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="435"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -125,10 +125,13 @@
 	</style>
 	<subDataset name="Pemeriksaan2" uuid="c74b9970-7175-4e52-abe6-3042c5e2492e">
 		<parameter name="tabel_pasien" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+			<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+		</parameter>
+		<parameter name="pagenum" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 		</parameter>
 		<queryString>
-			<![CDATA[select DATE_FORMAT(p.t_pemeriksaan, "%d-%m-%Y"), p.suhu_badan, p.limb_movement, p.oksigen_darah, p.detak_jantung, p.anxiety from mentalku.pemeriksaan as p where p.id_pasien = $P{tabel_pasien}]]>
+			<![CDATA[select DATE_FORMAT(p.t_pemeriksaan, "%d-%m-%Y"), p.suhu_badan, p.limb_movement, p.oksigen_darah, p.detak_jantung, p.anxiety from mentalku.pemeriksaan as p where p.id_pasien = $P{tabel_pasien} ]]>
 		</queryString>
 		<field name="DATE_FORMAT(p.t_pemeriksaan, &quot;%d-%m-%Y&quot;)" class="java.lang.String"/>
 		<field name="suhu_badan" class="java.lang.Double">
@@ -160,7 +163,7 @@ date_format(current_date(), "%d-%m-%Y") as waktu_cetak
 from mentalku.pemeriksaan 
 inner join mentalku.user on mentalku.pemeriksaan.id_pasien = mentalku.user.id_pasien 
 inner join mentalku.psikolog on mentalku.pemeriksaan.id_psikolog = mentalku.psikolog.id_psikolog
-where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
+where mentalku.pemeriksaan.id_pasien = $P{id_pasien} LIMIT 1]]>
 	</queryString>
 	<field name="nama_lengkap" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -284,21 +287,17 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 			</textField>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="98">
-			<staticText>
-				<reportElement x="0" y="0" width="515" height="36" uuid="e5df8ddf-2461-490f-b9fc-8517605caa3c"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ASPEK YANG DIUNGKAP]]></text>
-			</staticText>
+	<detail>
+		<band height="133" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 5" style="table 5" x="0" y="36" width="515" height="50" uuid="07dbbd25-d7d0-46d3-8752-a20ec1bcee6c"/>
+				<reportElement key="table 5" style="table 5" isPrintRepeatedValues="false" x="0" y="36" width="515" height="91" uuid="07dbbd25-d7d0-46d3-8752-a20ec1bcee6c"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Pemeriksaan2" uuid="bcb5d4ea-99ad-43b6-af24-bb1a1887ea90">
+					<datasetRun subDataset="Pemeriksaan2" uuid="20b9878c-06d2-4add-9cd2-33dbb2f37ff0">
 						<datasetParameter name="tabel_pasien">
 							<datasetParameterExpression><![CDATA[$P{id_pasien}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pagenum">
+							<datasetParameterExpression><![CDATA[($V{PAGE_NUMBER} - 1) * 10]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -412,10 +411,44 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="515" height="36" uuid="e5df8ddf-2461-490f-b9fc-8517605caa3c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASPEK YANG DIUNGKAP]]></text>
+			</staticText>
 		</band>
-	</columnHeader>
-	<columnFooter>
-		<band height="337" splitType="Stretch">
+		<band height="328" splitType="Prevent">
+			<staticText>
+				<reportElement x="361" y="179" width="146" height="20" uuid="d6f01928-78e9-4f2c-8e58-e4be45fea2e2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Psikolog Indonesia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="199" width="146" height="71" uuid="8a9f084f-fbcd-414d-8d63-4a785c1a7767"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="296" width="63" height="25" uuid="d8cae7d5-10d2-4641-a5e4-55ec5f774aa5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NA HIMPSI :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="361" y="271" width="146" height="25" uuid="80ed0d26-5012-401f-975e-5a17c39cc30e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nama_psikolog}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="296" width="83" height="25" uuid="d3b219f5-e981-4422-a101-bb98e5f6238d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sik_himpsi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="159" width="146" height="20" uuid="6e6c007f-e3fe-448a-8fc7-9dc4be0f01b5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{waktu_cetak}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="515" height="36" uuid="c133cee3-0ee3-4a5c-a3eb-dcd936f1756b"/>
 				<textElement verticalAlignment="Middle">
@@ -423,50 +456,41 @@ where mentalku.pemeriksaan.id_pasien = $P{id_pasien}]]>
 				</textElement>
 				<text><![CDATA[KESIMPULAN & SARAN]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="369" y="193" width="146" height="20" uuid="d6f01928-78e9-4f2c-8e58-e4be45fea2e2"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Psikolog Indonesia]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="369" y="213" width="146" height="71" uuid="8a9f084f-fbcd-414d-8d63-4a785c1a7767"/>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="369" y="309" width="63" height="25" uuid="d8cae7d5-10d2-4641-a5e4-55ec5f774aa5"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[NA HIMPSI :]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="369" y="284" width="146" height="25" uuid="80ed0d26-5012-401f-975e-5a17c39cc30e"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{nama_psikolog}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="432" y="309" width="83" height="25" uuid="d3b219f5-e981-4422-a101-bb98e5f6238d"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{sik_himpsi}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="369" y="173" width="146" height="20" uuid="6e6c007f-e3fe-448a-8fc7-9dc4be0f01b5"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{waktu_cetak}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="0" y="36" width="515" height="122" uuid="87e0040f-09f9-4c14-837b-42b94d5834fa"/>
 				<textFieldExpression><![CDATA[$P{kesimpulan}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnFooter>
+	</detail>
 	<pageFooter>
-		<band height="47" splitType="Stretch">
+		<band height="50">
 			<staticText>
-				<reportElement x="0" y="27" width="515" height="20" uuid="4af03de8-1478-4fac-8857-c1502552ca26"/>
-				<textElement textAlignment="Center">
-					<font isBold="false" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[Laporan pra-klinis pemeriksaan psikologis ini dianggap valid jika telah ditandatangani oleh psikolog terkait]]></text>
+				<reportElement x="0" y="0" width="498" height="33" uuid="93e62012-20a3-44cf-9dbb-5014d507c9eb"/>
+				<text><![CDATA[Laporan Pra-Klinis Pemeriksaan Psikologis ini hanya dianggap valid jika telah ditandatangani oleh psikolog tertera]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="387" y="30" width="80" height="20" uuid="a62da0bd-1696-4e26-89ef-e2d0790ef72b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="467" y="30" width="40" height="20" uuid="0089dce9-e86d-422e-90b0-1d6997507ada"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
+	<lastPageFooter>
+		<band height="354">
+			<textField>
+				<reportElement x="387" y="334" width="80" height="20" uuid="5de92781-d0d1-456d-9790-f9806cc2b6bd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="467" y="334" width="40" height="20" uuid="24b201b8-4153-427a-a823-8f065ed18708"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
 </jasperReport>

@@ -178,11 +178,11 @@ public class InputData extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         cbpemeriksa = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -199,10 +199,7 @@ public class InputData extends javax.swing.JFrame {
 
         jLabel2.setText("Tanggal Pemeriksaan: ");
 
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String str = formatter.format(date);
-        jLabel7.setText(str);
+        jLabel7.setText("tanggal");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -332,16 +329,6 @@ public class InputData extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setBackground(new java.awt.Color(51, 102, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Periksa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Body Temperature");
@@ -367,13 +354,21 @@ public class InputData extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Cetak");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Periksa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -407,9 +402,9 @@ public class InputData extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,11 +412,11 @@ public class InputData extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67))
+                .addGap(47, 47, 47))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -434,13 +429,13 @@ public class InputData extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         Output outp = new Output();
         // setVisible(false);
         try{
@@ -455,16 +450,16 @@ public class InputData extends javax.swing.JFrame {
                 outp.setPendidikan(this.Pend);
                 outp.settanggalLahir(this.tanggalLahir);
                 outp.setUsername(this.username);
-                outp.setLimb(Double.valueOf(jTextField2.getText()));
-                outp.setSuhu(Double.valueOf(jTextField6.getText()));
-                outp.setOksigen(Double.valueOf(jTextField3.getText()));
-                outp.setDetak(Double.valueOf(jTextField4.getText()));
+                outp.setLimb(Double.valueOf(jTextField2.getText().trim().replaceAll(",", ".")));
+                outp.setSuhu(Double.valueOf(jTextField6.getText().trim().replaceAll(",", ".")));
+                outp.setOksigen(Double.valueOf(jTextField3.getText().trim().replaceAll(",", ".")));
+                outp.setDetak(Double.valueOf(jTextField4.getText().trim().replaceAll(",", ".")));
                 outp.setIdPasien(this.id_pasien);
                 CekOrang pasien =  new CekOrang();
-                pasien.setLimb(Double.valueOf(jTextField2.getText()));
-                pasien.setSuhu(Double.valueOf(jTextField6.getText()));
-                pasien.setOksigen(Double.valueOf(jTextField3.getText()));
-                pasien.setDetak(Double.valueOf(jTextField4.getText()));
+                pasien.setLimb(Double.valueOf(jTextField2.getText().trim().replaceAll(",", ".")));
+                pasien.setSuhu(Double.valueOf(jTextField6.getText().trim().replaceAll(",", ".")));
+                pasien.setOksigen(Double.valueOf(jTextField3.getText().trim().replaceAll(",", ".")));
+                pasien.setDetak(Double.valueOf(jTextField4.getText().trim().replaceAll(",", ".")));
                 pasien.setFrekuensiPrediksi();
                 pasien.setJenisSuhu();
                 pasien.setJenisLimb();
@@ -507,8 +502,8 @@ public class InputData extends javax.swing.JFrame {
                 }
 
             
-            String query = "SET FOREIGN_KEY_CHECKS=0; INSERT INTO mentalku.pemeriksaan (t_pemeriksaan, tujuan, suhu_badan, limb_movement, oksigen_darah, detak_jantung, id_psikolog, id_pasien, anxiety) values('" + str + "','" + "Pemeriksaan Psikologis Pra-Klinis Kecemasan" + "','" + Double.valueOf(jTextField6.getText()) + "','" +
-                Double.valueOf(jTextField2.getText()) + "','" + Double.valueOf(jTextField3.getText()) + "','" + Double.valueOf(jTextField4.getText()) + "','" + String.valueOf(id_psikolog) + "','" + this.id_pasien + "','" + anxiety + "'); SET FOREIGN_KEY_CHECKS=1;";
+            String query = "SET FOREIGN_KEY_CHECKS=0; INSERT INTO mentalku.pemeriksaan (t_pemeriksaan, tujuan, suhu_badan, limb_movement, oksigen_darah, detak_jantung, id_psikolog, id_pasien, anxiety) values('" + str + "','" + "Pemeriksaan Psikologis Pra-Klinis Kecemasan" + "','" + Double.valueOf(jTextField6.getText().trim().replaceAll(",", ".")) + "','" +
+                Double.valueOf(jTextField2.getText().trim().replaceAll(",", ".")) + "','" + Double.valueOf(jTextField3.getText().trim().replaceAll(",", ".")) + "','" + Double.valueOf(jTextField4.getText().trim().replaceAll(",", ".")) + "','" + String.valueOf(id_psikolog) + "','" + this.id_pasien + "','" + anxiety + "'); SET FOREIGN_KEY_CHECKS=1;";
 
             Statement sta = conn.createStatement();
             int x = sta.executeUpdate(query);
@@ -523,7 +518,7 @@ public class InputData extends javax.swing.JFrame {
         }catch(SQLException e){
             System.out.print(e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // setVisible(false);
